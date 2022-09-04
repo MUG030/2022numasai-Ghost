@@ -11,8 +11,13 @@ public class SceneChanger : MonoBehaviour
          if (col.gameObject.tag == "Clear")//Clearのタグが付くオブジェクトに接触したらクリアシーンへの切り替え
          {
                 SceneManager.LoadScene("ClearScene");
-                Debug.Log("touch");
+                Debug.Log("Touch Goal");
          }
 
-     }
+        if (col.gameObject.tag == "Enemy")//Clearのタグが付くオブジェクトに接触したらクリアシーンへの切り替え
+        {
+            Debug.Log("Hit Enemy");
+        }
+
+    }
 }
