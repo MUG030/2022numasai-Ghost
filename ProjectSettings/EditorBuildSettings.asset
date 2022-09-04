@@ -8,4 +8,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SampleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/OrangeP1anet/ClearScene.unity
+    guid: 2c6ecc00afc3b444eb2579f7f648919b
+  - enabled: 1
+    path: Assets/OrangeP1anet/OrangeP1anet.unity
+    guid: f3e4bc7e556fee34db1fa10bbda2e675
   m_configObjects: {}
