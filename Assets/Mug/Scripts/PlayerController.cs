@@ -140,8 +140,27 @@ public class PlayerController : MonoBehaviour
                 Invoke("DamageEnd", 0.25f);
             }
             else
+            {
+                //ゲームオーバー
+                GameOver();
+            }
 
         }
+
+    }
+    //ダメージ終了
+    void DamageEnd()
+    {
+        //ダメージフラグOFF
+        inDamage = false;
+        //スプライトを元に戻す
+        gameObject.GetComponent<SpriteRenderer>().enabled = true;
+    }
+    //ゲームオーバー
+    void GameOver()
+    {
+        Debug.Log("ゲームオーバー");
+        //gameState = "gameover";
 
     }
 }
