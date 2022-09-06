@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -12,6 +13,10 @@ public class PlayerController : MonoBehaviour
     public LayerMask groundLayer;      //着地できるレイヤー
     bool goJump = false;            //ジャンプ開始フラグ
     bool onGround = false;          //地面に立っているフラグ
+
+    //ダメージ対応
+    public static int hp = 3;       //プレイヤーのhp
+    public static string gameState;
 
     // Start is called before the first frame update
     void Start()
@@ -70,5 +75,21 @@ public class PlayerController : MonoBehaviour
     {
         goJump = true;      //ジャンプフラグを立てる
         Debug.Log("ジャンプボタン押し!");
+    }
+
+    //接触判定
+    void OnTriggerEnter2D(Collider2D col)
+    {
+        if (col.gameObject.tag == "Clear")//Clearのタグが付くオブジェクトに接触したらクリアシーンへの切り替え
+        {
+            SceneManager.LoadScene("ClearScene");
+            Debug.Log("Touch Goal");
+        }
+
+        if (col.gameObject.tag == "Enemy")//Clearのタグが付くオブジェクトに接触したらクリアシーンへの切り替え
+        {
+            Debug.Log("Hit Enemy");
+        }
+
     }
 }
