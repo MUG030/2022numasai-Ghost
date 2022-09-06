@@ -10,24 +10,33 @@ public class PlayerController : MonoBehaviour
     public float speed = 3.0f;      //移動速度
 
     public float jump = 9.0f;       //ジャンプ力
-    public LayerMask groundLayer;      //着地できるレイヤー
+    public LayerMask groundLayer;   //着地できるレイヤー
     bool goJump = false;            //ジャンプ開始フラグ
     bool onGround = false;          //地面に立っているフラグ
 
     //ダメージ対応
     public static int hp = 3;       //プレイヤーのhp
-    public static string gameState;
+    public static string gameState; //ゲームの状態
+    bool inDamage = false;          //ダメージ中のフラグ
 
     // Start is called before the first frame update
     void Start()
     {
         //Rigidbody2Dを持ってくる
         rbody = this.GetComponent<Rigidbody2D>();
+        //ゲームの状態をプレイ中にする
+        gameState = "playing";
     }
 
     // Update is called once per frame
     void Update()
     {
+        //ゲーム中以外とダメージ中は何もしない
+        if (gameState != "playing" || inDamage)
+        {
+            return;
+        }
+
         //水平方向のにゅうりょくをチェックする
         axisH = Input.GetAxisRaw("Horizontal");
         //向きの調整
@@ -36,7 +45,8 @@ public class PlayerController : MonoBehaviour
             //右移動
             Debug.Log("右移動");
             transform.localScale = new Vector2(1, 1);
-        } else if (axisH < 0.0f)
+        }
+        else if (axisH < 0.0f)
         {
             //左移動
             Debug.Log("左移動");
@@ -45,12 +55,34 @@ public class PlayerController : MonoBehaviour
         //キャラをジャンプさせる
         if (Input.GetButtonDown("Jump"))
         {
-            Jump(); //ジャンプ
+            Jump();     //ジャンプ
         }
     }
 
     void FixedUpdate()
     {
+        //ゲーム中は何もしない
+        if (gameState != "playing")
+        {
+            return;
+        }
+        if (inDamage)
+        {
+            //ダメージ中は点滅する
+            float val = Mathf.Sin(Time.time * 50);
+            Debug.Log(val);
+            if (val > 0)
+            {
+                //スプライトを表示
+                gameObject.GetComponent<SpriteRenderer>().enabled = true;
+            }
+            else
+            {
+                //スプライトを非表示
+                gameObject.GetComponent<SpriteRenderer>().enabled = false;
+            }
+            return;     //ダメージ中は操作による影響を受けない
+        }
         //地上判定
         onGround = Physics2D.Linecast(transform.position, transform.position - (transform.up * 0.1f), groundLayer);
 
@@ -89,6 +121,26 @@ public class PlayerController : MonoBehaviour
         if (col.gameObject.tag == "Enemy")//Clearのタグが付くオブジェクトに接触したらクリアシーンへの切り替え
         {
             Debug.Log("Hit Enemy");
+            hp--;       //HPを減らす
+            if (hp > 0)
+            {
+                //移動停止
+                rbody.velocity = new Vector2(0, 0);
+                //敵キャラの反対方向にヒットバックさせる
+                if (transform.localScale.x >= 0)
+                {
+                    this.rbody.AddForce(transform.right * -400.0f);
+                } 
+                else
+                {
+                    this.rbody.AddForce(transform.right * 400.0f);
+                }
+                //ダメージフラグON
+                inDamage = true;
+                Invoke("DamageEnd", 0.25f);
+            }
+            else
+
         }
 
     }
