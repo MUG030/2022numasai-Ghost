@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class SceneChanger : MonoBehaviour
 {
 
-     void OnTriggerEnter2D(Collider2D col)
+     /*void OnTriggerEnter2D(Collider2D col)
      {
          if (col.gameObject.tag == "Clear")//Clearのタグが付くオブジェクトに接触したらクリアシーンへの切り替え
          {
@@ -19,5 +19,5 @@ public class SceneChanger : MonoBehaviour
             Debug.Log("Hit Enemy");
         }
 
-    }
+    }*/
 }
