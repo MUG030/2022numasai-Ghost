@@ -248,7 +248,6 @@ GameObject:
   - component: {fileID: 782476224}
   - component: {fileID: 782476223}
   - component: {fileID: 782476222}
-  - component: {fileID: 782476221}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -256,18 +255,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &782476221
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 782476220}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6a9952075282bca4a8f32e32869d2efe, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &782476222
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1511,7 +1498,7 @@ GameObject:
   - component: {fileID: 1505638757}
   - component: {fileID: 1505638756}
   m_Layer: 6
-  m_Name: Tilemap
+  m_Name: BlockTile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
