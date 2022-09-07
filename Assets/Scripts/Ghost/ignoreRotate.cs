@@ -21,14 +21,14 @@ public class ignoreRotate : MonoBehaviour
     void FixedUpdate()
     {
         //カメラの位置参照
-        Vector2 cameraPos = CameraPos.transform.position;
+        //Vector2 cameraPos = CameraPos.transform.position;
         //幽霊自身の位置参照
-        Vector2 ghostPos = transform.position;
-        if(ghostPos.x <= cameraPos.x){
+        //Vector2 ghostPos = transform.position;
+        if(CameraPos.transform.position.x >= transform.position.x){
             gameObject.transform.rotation = Quaternion.Euler(0, 180, 0);
         }
 
-        if(ghostPos.x > cameraPos.x){
+        if(CameraPos.transform.position.x <= transform.position.x){
             gameObject.transform.rotation = Quaternion.Euler(0, 0, 0);
         }
         
