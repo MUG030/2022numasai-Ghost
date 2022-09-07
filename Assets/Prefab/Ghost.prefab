@@ -95,6 +95,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84c3c3a1a67cc470f89900b61d46c0cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CameraPos: {fileID: 0}
 --- !u!1 &3049791635368029920
 GameObject:
   m_ObjectHideFlags: 0
@@ -194,7 +195,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  GhostSpeed: 0.4
+  GhostSpeed: 1
 --- !u!50 &404894143290965166
 Rigidbody2D:
   serializedVersion: 4

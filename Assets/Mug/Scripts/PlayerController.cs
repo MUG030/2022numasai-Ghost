@@ -15,9 +15,12 @@ public class PlayerController : MonoBehaviour
     bool onGround = false;          //地面に立っているフラグ
 
     //ダメージ対応
-    public static int hp = 3;       //プレイヤーのhp
+    public static int hp = 5;       //プレイヤーのhp
     public static string gameState; //ゲームの状態
     bool inDamage = false;          //ダメージ中のフラグ
+    //　LifeGaugeスクリプト
+    [SerializeField]
+    private HeartIndicator lifeGauge;
 
     // Start is called before the first frame update
     void Start()
@@ -26,6 +29,8 @@ public class PlayerController : MonoBehaviour
         rbody = this.GetComponent<Rigidbody2D>();
         //ゲームの状態をプレイ中にする
         gameState = "playing";
+        //　体力ゲージに反映
+        lifeGauge.SetLifeGauge(hp);
     }
 
     // Update is called once per frame
@@ -122,7 +127,7 @@ public class PlayerController : MonoBehaviour
         {
             Debug.Log("Hit Enemy");
             hp--;       //HPを減らす
-            if (hp > 0)
+            if (hp >= 0)
             {
                 //移動停止
                 rbody.velocity = new Vector2(0, 0);
@@ -135,6 +140,10 @@ public class PlayerController : MonoBehaviour
                 {
                     this.rbody.AddForce(transform.right * 400.0f);
                 }
+
+                lifeGauge.SetLifeGauge(hp);
+                lifeGauge.SetLifeGauge2(hp);
+
                 //ダメージフラグON
                 inDamage = true;
                 Invoke("DamageEnd", 0.25f);
