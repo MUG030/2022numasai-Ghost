@@ -195,7 +195,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  GhostSpeed: 1
+  GhostSpeed: 2
+  GetCoordinate: 2
 --- !u!50 &404894143290965166
 Rigidbody2D:
   serializedVersion: 4
