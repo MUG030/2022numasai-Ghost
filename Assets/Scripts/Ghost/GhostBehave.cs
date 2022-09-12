@@ -6,14 +6,13 @@ public class GhostBehave : MonoBehaviour
 {
     [Header("追いかけられる側"),SerializeField]GameObject target;
     [Header("お化けの速さ"),SerializeField]float GhostSpeed = 0.4f;
-    [Header("何秒に1回相手の座標を取得するか"),SerializeField]float GetCoordinate = 5f;
-    Vector2 direction = Vector2.zero;
+    [Header("何秒に1回相手の座標を取得するか"),SerializeField]float GetCoordinate = 10f;
     float coordinateTimer = 0;
     // float radian = 0;
     // Start is called before the first frame update
     void Start()
     {
-        GetCoordinate = coordinateTimer;
+         
     }
 
 
@@ -24,8 +23,15 @@ public class GhostBehave : MonoBehaviour
         // if(radian >= 2){
         //     radian = 0;
         // }
-  
-        GhostMove();
+        // coordinateTimer += Time.deltaTime;
+        if(coordinateTimer > GetCoordinate )
+        {
+            Coordinate();
+            coordinateTimer = 0;
+        }else{
+            GhostMove();
+        }
+        
     }
 
     Vector2 Coordinate()
@@ -38,13 +44,7 @@ public class GhostBehave : MonoBehaviour
 
     void GhostMove()
     {
-        
-        coordinateTimer += Time.deltaTime;
-        if(coordinateTimer > GetCoordinate )
-        {
-            direction = Coordinate();
-            coordinateTimer = 0;
-        }
+        Vector2 direction = Coordinate();
         //ゆらゆら動くとき
         //float cos = Mathf.Cos(Mathf.PI * radian); 
         
