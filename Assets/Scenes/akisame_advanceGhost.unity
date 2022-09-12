@@ -4234,7 +4234,11 @@ PrefabInstance:
       objectReference: {fileID: 387103322}
     - target: {fileID: 3049791635368029927, guid: 63cfc4900a6674578a7e4d06242a3ee2, type: 3}
       propertyPath: GhostSpeed
-      value: 1
+      value: 2.74
+      objectReference: {fileID: 0}
+    - target: {fileID: 3049791635368029927, guid: 63cfc4900a6674578a7e4d06242a3ee2, type: 3}
+      propertyPath: GetCoordinate
+      value: 2.92
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 63cfc4900a6674578a7e4d06242a3ee2, type: 3}
