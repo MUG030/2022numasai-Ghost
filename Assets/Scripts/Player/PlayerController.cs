@@ -126,7 +126,15 @@ public class PlayerController : MonoBehaviour
         if (col.gameObject.tag == "Enemy")//Clearのタグが付くオブジェクトに接触したらクリアシーンへの切り替え
         {
             Debug.Log("Hit Enemy");
+
+            // ダメージ中は処理スキップ
+            if (inDamage)
+            {
+                return;
+            }
+
             hp--;       //HPを減らす
+
             if (hp >= 0)
             {
                 //移動停止
@@ -146,7 +154,11 @@ public class PlayerController : MonoBehaviour
 
                 //ダメージフラグON
                 inDamage = true;
-                Invoke("DamageEnd", 0.25f);
+                // コルーチン開始
+                StartCoroutine("WaitForIt");
+                Invoke("DamageEnd", 1.0f);
+
+                
             }
             else
             {
@@ -157,6 +169,12 @@ public class PlayerController : MonoBehaviour
         }
 
     }
+
+    IEnumerable WaitForIt()
+    {
+        yield return new WaitForSeconds(10);
+    }
+
     //ダメージ終了
     void DamageEnd()
     {
