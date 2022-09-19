@@ -93,7 +93,7 @@ public class PlayerController : MonoBehaviour
             return;     //ダメージ中は操作による影響を受けない
         }
         //地上判定
-        onGround = Physics2D.Linecast(transform.position, transform.position - (transform.up * 0.1f), groundLayer);
+        onGround = Physics2D.Linecast(transform.position, transform.position - (transform.up * 0.9f), groundLayer);
 
         if (onGround || axisH != 0)
         {
@@ -146,11 +146,11 @@ public class PlayerController : MonoBehaviour
                 //敵キャラの反対方向にヒットバックさせる
                 if (transform.localScale.x >= 0)
                 {
-                    this.rbody.AddForce(transform.right * -400.0f);
+                    this.rbody.AddForce(transform.right * -100.0f);
                 } 
                 else
                 {
-                    this.rbody.AddForce(transform.right * 400.0f);
+                    this.rbody.AddForce(transform.right * 100.0f);
                 }
 
                 lifeGauge.SetLifeGauge(hp);
