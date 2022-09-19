@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 44523828}
   - component: {fileID: 44523830}
   - component: {fileID: 44523829}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: OtherTile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1042,7 +1042,7 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_Size: {x: 1, y: 1.8}
+  m_Size: {x: 1, y: 1.81}
   m_Direction: 0
 --- !u!50 &758869437
 Rigidbody2D:
@@ -4729,7 +4729,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1755073719}
   - component: {fileID: 1755073718}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Grid
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4776,7 +4776,7 @@ GameObject:
   - component: {fileID: 1932587256}
   - component: {fileID: 1932587258}
   - component: {fileID: 1932587257}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: GrassTile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
