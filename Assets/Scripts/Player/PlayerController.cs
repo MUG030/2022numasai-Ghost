@@ -16,6 +16,10 @@ public class PlayerController : MonoBehaviour
 
     //ダメージ対応
     public static int hp = 5;       //プレイヤーのhp
+    public int Gethp()              //取得関数
+    {
+        return hp;
+    }
     public static string gameState; //ゲームの状態
     bool inDamage = false;          //ダメージ中のフラグ
     //　LifeGaugeスクリプト
