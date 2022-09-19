@@ -89,7 +89,7 @@ public class PlayerController : MonoBehaviour
             return;     //ダメージ中は操作による影響を受けない
         }
         //地上判定
-        onGround = Physics2D.Linecast(transform.position, transform.position - (transform.up * 0.1f), groundLayer);
+        onGround = Physics2D.Linecast(transform.position, transform.position - (transform.up * 0.9f), groundLayer);
 
         if (onGround || axisH != 0)
         {
