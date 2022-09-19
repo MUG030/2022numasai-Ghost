@@ -16,6 +16,10 @@ public class PlayerController : MonoBehaviour
 
     //ダメージ対応
     public static int hp = 5;       //プレイヤーのhp
+    public int Gethp()              //取得関数
+    {
+        return hp;
+    }
     public static string gameState; //ゲームの状態
     bool inDamage = false;          //ダメージ中のフラグ
     //　LifeGaugeスクリプト
@@ -142,11 +146,11 @@ public class PlayerController : MonoBehaviour
                 //敵キャラの反対方向にヒットバックさせる
                 if (transform.localScale.x >= 0)
                 {
-                    this.rbody.AddForce(transform.right * -400.0f);
+                    this.rbody.AddForce(transform.right * -100.0f);
                 } 
                 else
                 {
-                    this.rbody.AddForce(transform.right * 400.0f);
+                    this.rbody.AddForce(transform.right * 100.0f);
                 }
 
                 lifeGauge.SetLifeGauge(hp);
