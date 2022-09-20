@@ -1017,7 +1017,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 534a2960b587e9d40863186c286ca1a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 1250275069}
+  playerTr: {fileID: 1250275074}
+  cameraOrgPos: {x: 0, y: 0, z: -10}
+  camaraMaxPos: {x: 100, y: 0}
+  camaraMinPos: {x: 0, y: 0}
 --- !u!81 &412305647
 AudioListener:
   m_ObjectHideFlags: 0
@@ -4437,6 +4440,11 @@ PrefabInstance:
 --- !u!1 &1250275069 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6928710707541644772, guid: 9ad162c829b7b594d908a54a10b5aa0b, type: 3}
+  m_PrefabInstance: {fileID: 1250275068}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1250275074 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6928710707541644775, guid: 9ad162c829b7b594d908a54a10b5aa0b, type: 3}
   m_PrefabInstance: {fileID: 1250275068}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1299671565
