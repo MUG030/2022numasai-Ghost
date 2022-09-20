@@ -4,29 +4,24 @@ using UnityEngine;
 
 public class CameraManager : MonoBehaviour
 {
-    public GameObject target; //追従対象
-    Vector3 pos;
+    [SerializeField] Transform playerTr; // プレイヤーのTransform
+    [SerializeField] Vector3 cameraOrgPos = new Vector3(0, 0, -10f); // カメラの初期位置位置
+    [SerializeField] Vector2 camaraMaxPos = new Vector2(100, 0); // カメラの(右,上)限界座標(画面端では追従しない)
+    [SerializeField] Vector2 camaraMinPos = new Vector2(0, 0); // カメラの(左,下)限界座標(縦のカメラは固定)
 
-    void Start()
+    void LateUpdate()
     {
-        pos = Camera.main.gameObject.transform.position; // カメラの初期位置
-    }
+        Vector3 playerPos = playerTr.position; // プレイヤーの位置
+        Vector3 camPos = transform.position; // カメラの位置
 
-    void Update()
-    {
-        Vector3 cameraPos = target.transform.position;
+        // 遅延をかけながらプレイヤーの位置に追従
+        camPos = Vector3.Lerp(transform.position, playerPos + cameraOrgPos, 3.0f * Time.deltaTime);
 
-        cameraPos.x = target.transform.position.x; // カメラの位置に対象の位置を代入
+        // カメラの位置を制限
+        camPos.x = Mathf.Clamp(camPos.x, camaraMinPos.x, camaraMaxPos.x);
+        camPos.y = Mathf.Clamp(camPos.y, camaraMinPos.y, camaraMaxPos.y);
+        camPos.z = -10f;
+        transform.position = camPos;
 
-        // もし対象の横位置が0より小さい場合
-        if (target.transform.position.x < 0)
-        {
-            cameraPos.x = 0; // カメラの横位置に0を入れる
-        }
-
-        cameraPos.y = 0;  // 縦のカメラは固定
-
-        cameraPos.z = -10;
-        Camera.main.gameObject.transform.position = cameraPos;
     }
 }
