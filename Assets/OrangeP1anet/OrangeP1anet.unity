@@ -1547,7 +1547,7 @@ GameObject:
   - component: {fileID: 795792570}
   m_Layer: 6
   m_Name: WaterTile
-  m_TagString: Untagged
+  m_TagString: Water
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1879,6 +1879,10 @@ PrefabInstance:
       propertyPath: lifeGauge
       value: 
       objectReference: {fileID: 1625371161}
+    - target: {fileID: 6928710707541644769, guid: 9ad162c829b7b594d908a54a10b5aa0b, type: 3}
+      propertyPath: water.m_Bits
+      value: 16
+      objectReference: {fileID: 0}
     - target: {fileID: 6928710707541644772, guid: 9ad162c829b7b594d908a54a10b5aa0b, type: 3}
       propertyPath: m_Name
       value: Player
@@ -1889,7 +1893,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6928710707541644775, guid: 9ad162c829b7b594d908a54a10b5aa0b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -5.4
+      value: 57.07
       objectReference: {fileID: 0}
     - target: {fileID: 6928710707541644775, guid: 9ad162c829b7b594d908a54a10b5aa0b, type: 3}
       propertyPath: m_LocalPosition.y
@@ -10764,16 +10768,6 @@ Tilemap:
       m_TileObjectToInstantiateIndex: 65535
       dummyAlignment: 0
       m_AllTileFlags: 1073741825
-  - first: {x: 102, y: 3, z: 0}
-    second:
-      serializedVersion: 2
-      m_TileIndex: 6
-      m_TileSpriteIndex: 6
-      m_TileMatrixIndex: 1
-      m_TileColorIndex: 0
-      m_TileObjectToInstantiateIndex: 65535
-      dummyAlignment: 0
-      m_AllTileFlags: 1073741825
   - first: {x: 105, y: 3, z: 0}
     second:
       serializedVersion: 2
@@ -10888,7 +10882,7 @@ Tilemap:
     m_Data: {fileID: 0}
   - m_RefCount: 0
     m_Data: {fileID: 0}
-  - m_RefCount: 78
+  - m_RefCount: 77
     m_Data: {fileID: 11400000, guid: c5ae9e72727c68745a04acf191d44fc8, type: 2}
   - m_RefCount: 73
     m_Data: {fileID: 11400000, guid: 474f8c33d7b196d49bf65355a58aa920, type: 2}
@@ -10909,7 +10903,7 @@ Tilemap:
     m_Data: {fileID: 0}
   - m_RefCount: 0
     m_Data: {fileID: 0}
-  - m_RefCount: 78
+  - m_RefCount: 77
     m_Data: {fileID: 21300000, guid: 7c6a4b7eb4a28e24f9ade3ea6191c326, type: 3}
   - m_RefCount: 73
     m_Data: {fileID: 21300000, guid: 5f98e56c408cd3446852b3aaee5d09f6, type: 3}
@@ -10936,7 +10930,7 @@ Tilemap:
       e31: 0
       e32: 0
       e33: 1
-  - m_RefCount: 146
+  - m_RefCount: 145
     m_Data:
       e00: -1
       e01: 0
@@ -10955,7 +10949,7 @@ Tilemap:
       e32: 0
       e33: 1
   m_TileColorArray:
-  - m_RefCount: 292
+  - m_RefCount: 291
     m_Data: {r: 1, g: 1, b: 1, a: 1}
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 1
