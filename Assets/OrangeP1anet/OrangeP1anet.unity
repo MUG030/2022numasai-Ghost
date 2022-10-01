@@ -1545,9 +1545,9 @@ GameObject:
   - component: {fileID: 795792569}
   - component: {fileID: 795792568}
   - component: {fileID: 795792570}
-  m_Layer: 6
+  m_Layer: 4
   m_Name: WaterTile
-  m_TagString: Water
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1883,6 +1883,10 @@ PrefabInstance:
       propertyPath: water.m_Bits
       value: 16
       objectReference: {fileID: 0}
+    - target: {fileID: 6928710707541644769, guid: 9ad162c829b7b594d908a54a10b5aa0b, type: 3}
+      propertyPath: waterLayer.m_Bits
+      value: 16
+      objectReference: {fileID: 0}
     - target: {fileID: 6928710707541644772, guid: 9ad162c829b7b594d908a54a10b5aa0b, type: 3}
       propertyPath: m_Name
       value: Player
@@ -1893,7 +1897,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6928710707541644775, guid: 9ad162c829b7b594d908a54a10b5aa0b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 57.07
+      value: -5.6
       objectReference: {fileID: 0}
     - target: {fileID: 6928710707541644775, guid: 9ad162c829b7b594d908a54a10b5aa0b, type: 3}
       propertyPath: m_LocalPosition.y
