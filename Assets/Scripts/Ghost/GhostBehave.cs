@@ -11,6 +11,8 @@ public class GhostBehave : MonoBehaviour
     float coordinateTimer = 0;
     // float radian = 0;
     // Start is called before the first frame update
+
+    [Header("幽霊から出るもの"),SerializeField]public GameObject prefabGhostHart;
     void Start()
     {
         GetCoordinate = coordinateTimer;
@@ -52,5 +54,8 @@ public class GhostBehave : MonoBehaviour
         transform.rotation = Quaternion.FromToRotation(Vector2.up, direction);
         //対象物へ接近
         this.transform.Translate(Vector2.up * Time.deltaTime * GhostSpeed);
+    }
+    private void OnDestroy() {
+        Instantiate(prefabGhostHart, new Vector2(0,0), Quaternion.identity);
     }
 }

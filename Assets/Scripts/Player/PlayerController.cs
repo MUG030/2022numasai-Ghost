@@ -11,8 +11,10 @@ public class PlayerController : MonoBehaviour
 
     public float jump = 9.0f;       //ジャンプ力
     public LayerMask groundLayer;   //着地できるレイヤー
+    public LayerMask waterLayer;   //着地できるレイヤー
     bool goJump = false;            //ジャンプ開始フラグ
     bool onGround = false;          //地面に立っているフラグ
+    bool onWater = false;          //地面に立っているフラグ
 
     //ダメージ対応
     public static int hp = 5;       //プレイヤーのhp
@@ -94,18 +96,36 @@ public class PlayerController : MonoBehaviour
         }
         //地上判定
         onGround = Physics2D.Linecast(transform.position, transform.position - (transform.up * 0.9f), groundLayer);
+        onWater = Physics2D.Linecast(transform.position, transform.position - (transform.up * 0.9f), waterLayer);
 
-        if (onGround || axisH != 0)
+        if (onGround || axisH != 0 && !onWater)
         {
-            //地面の上or速度が0ではない
+            //地面の上or速度が0ではない、の二つを満たしていてかつ水面ではない
             //速度の更新
+            speed = 3.0f;
             rbody.velocity = new Vector2(axisH * speed, rbody.velocity.y);
         }
+        else if (onWater || axisH != 0)
+        {
+            //水面での速度の更新
+            speed = 1.7f;
+            rbody.velocity = new Vector2(axisH * speed, rbody.velocity.y);
+        }
+
         if (onGround && goJump)
         {
             //地面の上でジャンプキーが押された
             //ジャンプさせる
             Debug.Log("ジャンプ!");
+            Vector2 jumpPw = new Vector2(0, jump);          //ジャンプさせるベクトルを作る
+            rbody.AddForce(jumpPw, ForceMode2D.Impulse);    //瞬間的な力を加える
+            goJump = false; //ジャンプフラグを下ろす
+        }
+        else if (onWater && goJump)
+        {
+            //水面でジャンプキーが押された
+            //ジャンプさせる
+            Debug.Log("ジャンプ!vジャンプ!ジャンプ!");
             Vector2 jumpPw = new Vector2(0, jump);          //ジャンプさせるベクトルを作る
             rbody.AddForce(jumpPw, ForceMode2D.Impulse);    //瞬間的な力を加える
             goJump = false; //ジャンプフラグを下ろす
@@ -123,11 +143,11 @@ public class PlayerController : MonoBehaviour
     {
         if (col.gameObject.tag == "Clear")//Clearのタグが付くオブジェクトに接触したらクリアシーンへの切り替え
         {
-            SceneManager.LoadScene("ClearScene");
             Debug.Log("Touch Goal");
+            SceneManager.LoadScene("ClearScene");
         }
 
-        if (col.gameObject.tag == "Enemy")//Clearのタグが付くオブジェクトに接触したらクリアシーンへの切り替え
+        if (col.gameObject.tag == "Enemy")
         {
             Debug.Log("Hit Enemy");
 
