@@ -16,6 +16,13 @@ public class PlayerController : MonoBehaviour
     bool onGround = false;          //地面に立っているフラグ
     bool onWater = false;          //地面に立っているフラグ
 
+    //アニメーション対応
+    Animator animator;  //アニメーター
+    public string stopAnime = "PlayerStop";
+    public string moveAnime = "PlayerMove";
+    string nowAnime = "";
+    string oldAnime = "";
+
     //ダメージ対応
     public static int hp = 5;       //プレイヤーのhp
     public int Gethp()              //取得関数
@@ -33,6 +40,10 @@ public class PlayerController : MonoBehaviour
     {
         //Rigidbody2Dを持ってくる
         rbody = this.GetComponent<Rigidbody2D>();
+        //Animatorを持ってくる
+        animator = GetComponent<Animator>();
+        nowAnime = stopAnime;
+        oldAnime = stopAnime;
         //ゲームの状態をプレイ中にする
         gameState = "playing";
         //　体力ゲージに反映
@@ -129,6 +140,25 @@ public class PlayerController : MonoBehaviour
             Vector2 jumpPw = new Vector2(0, jump);          //ジャンプさせるベクトルを作る
             rbody.AddForce(jumpPw, ForceMode2D.Impulse);    //瞬間的な力を加える
             goJump = false; //ジャンプフラグを下ろす
+        }
+        //停止と移動のアニメーション
+        if (onGround)
+        {
+            //地面の上
+            if (axisH == 0)
+            {
+                nowAnime = stopAnime;   //停止中
+            }
+            else
+            {
+                nowAnime = moveAnime;   //移動中
+            }
+        }
+
+        if (nowAnime != oldAnime)
+        {
+            oldAnime = nowAnime;
+            animator.Play(nowAnime);    // アニメーション再生
         }
     }
     //ジャンプ
