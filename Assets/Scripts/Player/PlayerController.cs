@@ -20,6 +20,7 @@ public class PlayerController : MonoBehaviour
     Animator animator;  //アニメーター
     public string stopAnime = "PlayerStop";
     public string moveAnime = "PlayerMove";
+    public string attackAnime = "PlayerAttack";
     string nowAnime = "";
     string oldAnime = "";
 
@@ -141,7 +142,7 @@ public class PlayerController : MonoBehaviour
             rbody.AddForce(jumpPw, ForceMode2D.Impulse);    //瞬間的な力を加える
             goJump = false; //ジャンプフラグを下ろす
         }
-        //停止と移動のアニメーション
+        //停止と移動と攻撃のアニメーション
         if (onGround)
         {
             //地面の上
@@ -153,7 +154,14 @@ public class PlayerController : MonoBehaviour
             {
                 nowAnime = moveAnime;   //移動中
             }
+            //攻撃アニメーション時(Fキーを押すと攻撃開始)
+            if (Input.GetKeyDown(KeyCode.F))
+            {
+                nowAnime = attackAnime;   //攻撃中
+            }
         }
+
+
 
         if (nowAnime != oldAnime)
         {
