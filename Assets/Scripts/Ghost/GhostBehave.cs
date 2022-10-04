@@ -7,6 +7,7 @@ public class GhostBehave : MonoBehaviour
     [Header("追いかけられる側"),SerializeField]GameObject target;
     [Header("お化けの速さ"),SerializeField]float GhostSpeed = 0.4f;
     [Header("何秒に1回相手の座標を取得するか"),SerializeField]float GetCoordinate = 5f;
+    Renderer targetRenderer;
     Vector2 direction = Vector2.zero;
     float coordinateTimer = 0;
     // float radian = 0;
@@ -16,6 +17,7 @@ public class GhostBehave : MonoBehaviour
     void Start()
     {
         GetCoordinate = coordinateTimer;
+        targetRenderer = GetComponent<Renderer>();
     }
 
 
@@ -26,8 +28,12 @@ public class GhostBehave : MonoBehaviour
         // if(radian >= 2){
         //     radian = 0;
         // }
-  
-        GhostMove();
+        
+        if (targetRenderer.isVisible)
+        {
+            // 画面内にいるときの処理
+            GhostMove();
+        }
     }
 
     Vector2 Coordinate()
