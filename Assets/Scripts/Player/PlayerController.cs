@@ -15,6 +15,16 @@ public class PlayerController : MonoBehaviour
     bool goJump = false;            //ジャンプ開始フラグ
     bool onGround = false;          //地面に立っているフラグ
     bool onWater = false;          //地面に立っているフラグ
+    bool isAttacking = false;       // 攻撃モーションのフラグ
+
+    //アニメーション対応
+    Animator animator;  //アニメーター
+    public string stopAnime = "PlayerStop";
+    public string moveAnime = "PlayerMove";
+    public string attackAnime = "PlayerAttack";
+    string nowAnime = "";
+    string oldAnime = "";
+    public static int actState = 0;
 
     //ダメージ対応
     public static int hp = 5;       //プレイヤーのhp
@@ -33,15 +43,21 @@ public class PlayerController : MonoBehaviour
     {
         //Rigidbody2Dを持ってくる
         rbody = this.GetComponent<Rigidbody2D>();
+        //Animatorを持ってくる
+        animator = GetComponent<Animator>();
+        nowAnime = stopAnime;
+        oldAnime = stopAnime;
         //ゲームの状態をプレイ中にする
         gameState = "playing";
         //　体力ゲージに反映
         lifeGauge.SetLifeGauge(hp);
+        
     }
 
     // Update is called once per frame
     void Update()
     {
+
         //ゲーム中以外とダメージ中は何もしない
         if (gameState != "playing" || inDamage)
         {
@@ -55,12 +71,14 @@ public class PlayerController : MonoBehaviour
         {
             //右移動
             Debug.Log("右移動");
+            actState = 1;
             transform.localScale = new Vector2(1, 1);
         }
         else if (axisH < 0.0f)
         {
             //左移動
             Debug.Log("左移動");
+            actState = 1;
             transform.localScale = new Vector2(-1, 1); //左右反転させる 
         }
         //キャラをジャンプさせる
@@ -68,10 +86,20 @@ public class PlayerController : MonoBehaviour
         {
             Jump();     //ジャンプ
         }
+
+        Attack();
+
     }
 
     void FixedUpdate()
     {
+
+        // 攻撃アニメ再生中は、以下の処理しない　　　　　　　　　　　　　//　追加　ここから
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName("PlayerAttack"))
+        {
+            return;
+        }
+
         //ゲーム中は何もしない
         if (gameState != "playing")
         {
@@ -94,6 +122,7 @@ public class PlayerController : MonoBehaviour
             }
             return;     //ダメージ中は操作による影響を受けない
         }
+
         //地上判定
         onGround = Physics2D.Linecast(transform.position, transform.position - (transform.up * 0.9f), groundLayer);
         onWater = Physics2D.Linecast(transform.position, transform.position - (transform.up * 0.9f), waterLayer);
@@ -130,12 +159,56 @@ public class PlayerController : MonoBehaviour
             rbody.AddForce(jumpPw, ForceMode2D.Impulse);    //瞬間的な力を加える
             goJump = false; //ジャンプフラグを下ろす
         }
+
+        //停止と移動と攻撃のアニメーション
+        if (onGround)
+        {
+            //地面の上
+            if (actState == 0)
+            {
+                nowAnime = stopAnime;   //停止中
+            }
+            else if (actState == 1)
+            {
+                nowAnime = moveAnime;   //移動中
+                actState = 0;
+            }
+        }
+
+        if (nowAnime != oldAnime)
+        {
+            oldAnime = nowAnime;
+            animator.Play(nowAnime);    // アニメーション再生
+        }
+
+        
+
     }
+
+    public void Attack()
+    {
+        //攻撃アニメーション時(Qキーを押すと攻撃開始)
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            //攻撃中
+            animator.Play(attackAnime);
+            //移動停止
+            rbody.velocity = new Vector2(0, 0);
+        }
+    }
+
     //ジャンプ
     public void Jump()
     {
         goJump = true;      //ジャンプフラグを立てる
         Debug.Log("ジャンプボタン押し!");
+    }
+
+    // 攻撃アニメーション終了関数
+    IEnumerable endMotionAnime()
+    {
+        yield return new WaitForSeconds(1);
+        actState = 0;
     }
 
     //接触判定
