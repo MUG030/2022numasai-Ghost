@@ -224,11 +224,18 @@ public class PlayerController : MonoBehaviour
         {
             Debug.Log("Hit Enemy");
 
+            // 攻撃アニメ再生中は、以下の処理しない(無敵判定)
+            if (animator.GetCurrentAnimatorStateInfo(0).IsName("PlayerAttack"))
+            {
+                return;
+            }
+
             // ダメージ中は処理スキップ
             if (inDamage)
             {
                 return;
             }
+
 
             hp--;       //HPを減らす
 
