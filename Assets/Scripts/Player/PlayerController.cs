@@ -22,6 +22,8 @@ public class PlayerController : MonoBehaviour
     public string stopAnime = "PlayerStop";
     public string moveAnime = "PlayerMove";
     public string attackAnime = "PlayerAttack";
+    public string jumpAnime = "PlayerJump";
+    public string damageAnime = "PlayerDamage";
     string nowAnime = "";
     string oldAnime = "";
     public static int actState = 0;
@@ -94,7 +96,7 @@ public class PlayerController : MonoBehaviour
     void FixedUpdate()
     {
 
-        // 攻撃アニメ再生中は、以下の処理しない　　　　　　　　　　　　　//　追加　ここから
+        // 攻撃アニメ再生中は、以下の処理しない　　　　　　　　　　　　　
         if (animator.GetCurrentAnimatorStateInfo(0).IsName("PlayerAttack"))
         {
             return;
@@ -120,6 +122,7 @@ public class PlayerController : MonoBehaviour
                 //スプライトを非表示
                 gameObject.GetComponent<SpriteRenderer>().enabled = false;
             }
+
             return;     //ダメージ中は操作による影響を受けない
         }
 
@@ -174,6 +177,10 @@ public class PlayerController : MonoBehaviour
                 actState = 0;
             }
         }
+        else　                          //空中
+        {
+            nowAnime = jumpAnime;        
+        }
 
         if (nowAnime != oldAnime)
         {
@@ -224,6 +231,8 @@ public class PlayerController : MonoBehaviour
         if (col.gameObject.tag == "Enemy")
         {
             Debug.Log("Hit Enemy");
+            //ダメージアニメーション
+            animator.Play(damageAnime);
 
             // 攻撃アニメ再生中は、以下の処理しない(無敵判定)
             if (animator.GetCurrentAnimatorStateInfo(0).IsName("PlayerAttack"))
