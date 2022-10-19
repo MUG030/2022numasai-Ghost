@@ -217,6 +217,7 @@ public class PlayerController : MonoBehaviour
         if (col.gameObject.tag == "Clear")//Clearのタグが付くオブジェクトに接触したらクリアシーンへの切り替え
         {
             Debug.Log("Touch Goal");
+            hp = 5;
             SceneManager.LoadScene("ClearScene");
         }
 
