@@ -40,6 +40,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private HeartIndicator lifeGauge;
 
+    //イベント用
+    public bool controlEnabled {get; set; } = true; //操作有効無効Bool値(OrangeP1anet追加)
+
     // Start is called before the first frame update
     void Start()
     {
@@ -47,50 +50,50 @@ public class PlayerController : MonoBehaviour
         rbody = this.GetComponent<Rigidbody2D>();
         //Animatorを持ってくる
         animator = GetComponent<Animator>();
-        nowAnime = stopAnime;
+        nowAnime = stopAnime;   
         oldAnime = stopAnime;
         //ゲームの状態をプレイ中にする
         gameState = "playing";
         //　体力ゲージに反映
         lifeGauge.SetLifeGauge(hp);
-        
     }
 
     // Update is called once per frame
     void Update()
     {
-
-        //ゲーム中以外とダメージ中は何もしない
-        if (gameState != "playing" || inDamage)
+        if (controlEnabled)//イベント用(OrangeP1anet追加)
         {
-            return;
-        }
+            //ゲーム中以外とダメージ中は何もしない
+            if (gameState != "playing" || inDamage)
+            {
+                return;
+            }
 
-        //水平方向のにゅうりょくをチェックする
-        axisH = Input.GetAxisRaw("Horizontal");
-        //向きの調整
-        if (axisH > 0.0f)
-        {
-            //右移動
-            Debug.Log("右移動");
-            actState = 1;
-            transform.localScale = new Vector2(1, 1);
-        }
-        else if (axisH < 0.0f)
-        {
-            //左移動
-            Debug.Log("左移動");
-            actState = 1;
-            transform.localScale = new Vector2(-1, 1); //左右反転させる 
-        }
-        //キャラをジャンプさせる
-        if (Input.GetButtonDown("Jump"))
-        {
-            Jump();     //ジャンプ
-        }
+            //水平方向のにゅうりょくをチェックする
+            axisH = Input.GetAxisRaw("Horizontal");
+            //向きの調整
+            if (axisH > 0.0f)
+            {
+                //右移動
+                Debug.Log("右移動");
+                actState = 1;
+                transform.localScale = new Vector2(1, 1);
+            }
+            else if (axisH < 0.0f)
+            {
+                //左移動
+                Debug.Log("左移動");
+                actState = 1;
+                transform.localScale = new Vector2(-1, 1); //左右反転させる 
+            }
+            //キャラをジャンプさせる
+            if (Input.GetButtonDown("Jump"))
+            {
+                Jump();     //ジャンプ
+            }
 
-        Attack();
-
+            Attack();
+        }
     }
 
     void FixedUpdate()
