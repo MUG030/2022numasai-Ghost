@@ -13,7 +13,7 @@ public class GhostBehave : MonoBehaviour
     // float radian = 0;
     // Start is called before the first frame update
 
-    [Header("幽霊から出るもの"),SerializeField]public GameObject prefabGhostHart;
+    //[Header("幽霊から出るもの"),SerializeField]public GameObject prefabGhostHart;
     void Start()
     {
         GetCoordinate = coordinateTimer;
@@ -62,6 +62,15 @@ public class GhostBehave : MonoBehaviour
         this.transform.Translate(Vector2.up * Time.deltaTime * GhostSpeed);
     }
     private void OnDestroy() {
-        Instantiate(prefabGhostHart, new Vector2(0,0), Quaternion.identity);
+        //Instantiate(prefabGhostHart, new Vector2(0,0), Quaternion.identity);
+    }
+    
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Weapon")
+        {
+            //Debug.Log("dead");
+            Destroy(gameObject, 0.2f);
+        }
     }
 }
