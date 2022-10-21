@@ -24,6 +24,7 @@ public class PlayerController : MonoBehaviour
     public string attackAnime = "PlayerAttack";
     public string jumpAnime = "PlayerJump";
     public string damageAnime = "PlayerDamage";
+    public string deadAnime = "PlayerOver";
     string nowAnime = "";
     string oldAnime = "";
     public static int actState = 0;
@@ -252,7 +253,7 @@ public class PlayerController : MonoBehaviour
 
             hp--;       //HPを減らす
 
-            if (hp >= 0)
+            if (hp >= 1)
             {
                 //移動停止
                 rbody.velocity = new Vector2(0, 0);
@@ -304,7 +305,7 @@ public class PlayerController : MonoBehaviour
     void GameOver()
     {
         Debug.Log("ゲームオーバー");
-        //gameState = "gameover";
-
+        gameState = "gameover";
+        animator.Play(deadAnime);
     }
 }
