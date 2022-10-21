@@ -41,7 +41,7 @@ public class PlayerController : MonoBehaviour
     private HeartIndicator lifeGauge;
 
     //イベント用
-    public bool controlEnabled {get; set; } = true; //操作有効無効Bool値(OrangeP1anet追加)
+    public bool controlEnabled {get; set; } = true; //操作有効無効Bool値
 
     // Start is called before the first frame update
     void Start()
@@ -61,7 +61,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (controlEnabled)//イベント用(OrangeP1anet追加)
+        if (controlEnabled)//ストーリーイベント用
         {
             //ゲーム中以外とダメージ中は何もしない
             if (gameState != "playing" || inDamage)
@@ -75,14 +75,14 @@ public class PlayerController : MonoBehaviour
             if (axisH > 0.0f)
             {
                 //右移動
-                Debug.Log("右移動");
+                //Debug.Log("右移動");
                 actState = 1;
                 transform.localScale = new Vector2(1, 1);
             }
             else if (axisH < 0.0f)
             {
                 //左移動
-                Debug.Log("左移動");
+                //Debug.Log("左移動");
                 actState = 1;
                 transform.localScale = new Vector2(-1, 1); //左右反転させる 
             }
@@ -151,7 +151,7 @@ public class PlayerController : MonoBehaviour
         {
             //地面の上でジャンプキーが押された
             //ジャンプさせる
-            Debug.Log("ジャンプ!");
+            //Debug.Log("ジャンプ!");
             Vector2 jumpPw = new Vector2(0, jump);          //ジャンプさせるベクトルを作る
             rbody.AddForce(jumpPw, ForceMode2D.Impulse);    //瞬間的な力を加える
             goJump = false; //ジャンプフラグを下ろす
@@ -160,7 +160,6 @@ public class PlayerController : MonoBehaviour
         {
             //水面でジャンプキーが押された
             //ジャンプさせる
-            Debug.Log("ジャンプ!vジャンプ!ジャンプ!");
             Vector2 jumpPw = new Vector2(0, jump);          //ジャンプさせるベクトルを作る
             rbody.AddForce(jumpPw, ForceMode2D.Impulse);    //瞬間的な力を加える
             goJump = false; //ジャンプフラグを下ろす
@@ -211,7 +210,7 @@ public class PlayerController : MonoBehaviour
     public void Jump()
     {
         goJump = true;      //ジャンプフラグを立てる
-        Debug.Log("ジャンプボタン押し!");
+        //Debug.Log("ジャンプボタン押し!");
     }
 
     // 攻撃アニメーション終了関数
@@ -226,14 +225,14 @@ public class PlayerController : MonoBehaviour
     {
         if (col.gameObject.tag == "Clear")//Clearのタグが付くオブジェクトに接触したらクリアシーンへの切り替え
         {
-            Debug.Log("Touch Goal");
+            //Debug.Log("Touch Goal");
             hp = 5;
             SceneManager.LoadScene("ClearScene");
         }
 
         if (col.gameObject.tag == "Enemy")
         {
-            Debug.Log("Hit Enemy");
+            //Debug.Log("Hit Enemy");
             //ダメージアニメーション
             animator.Play(damageAnime);
 
