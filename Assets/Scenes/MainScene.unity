@@ -19774,6 +19774,10 @@ PrefabInstance:
       value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 7382063050187368431, guid: 9ad162c829b7b594d908a54a10b5aa0b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7382063050187368431, guid: 9ad162c829b7b594d908a54a10b5aa0b, type: 3}
       propertyPath: m_TagString
       value: Weapon
       objectReference: {fileID: 0}
