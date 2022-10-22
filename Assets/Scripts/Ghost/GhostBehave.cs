@@ -10,6 +10,7 @@ public class GhostBehave : MonoBehaviour
     Renderer targetRenderer;
     Vector2 direction = Vector2.zero;
     float coordinateTimer = 0;
+    private ItemManager item;
     // float radian = 0;
     // Start is called before the first frame update
 
@@ -18,9 +19,10 @@ public class GhostBehave : MonoBehaviour
     {
         GetCoordinate = coordinateTimer;
         targetRenderer = GetComponent<Renderer>();
+        item = GetComponent<ItemManager>();
     }
 
-
+    
     // Update is called once per frame
     void Update()
     {
@@ -71,6 +73,7 @@ public class GhostBehave : MonoBehaviour
         {
             //Debug.Log("dead");
             Destroy(gameObject, 0.2f);
+            Invoke("item.ItemDrop()", 0.2f);
         }
     }
 }
