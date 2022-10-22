@@ -15,13 +15,13 @@ public class Itemcontroller : MonoBehaviour
     {
         
     }
-    void OnTriggerEnter2D(Collider2D col)
+    void OnCollisionEnter2D(Collision2D col)
     {
         // Õ“Ë‚µ‚½‘Šè‚ÉPlayerƒ^ƒO‚ª•t‚¢‚Ä‚¢‚é‚Æ‚«
         if (col.gameObject.tag == "Player")
         {
             // 0.2•bŒã‚ÉÁ‚¦‚é
-            Destroy(gameObject, 0.2f);
+            Destroy(gameObject, 0.0f);
         }
     }
 }

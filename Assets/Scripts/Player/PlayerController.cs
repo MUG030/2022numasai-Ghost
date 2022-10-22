@@ -221,6 +221,17 @@ public class PlayerController : MonoBehaviour
         actState = 0;
     }
 
+    void OnCollisionEnter2D(Collision2D col)
+    {
+        //‘Ì—Í‰ñ•œˆ—
+        if (col.gameObject.tag == "Item")
+        {
+            Debug.Log("‰ñ•œƒAƒCƒeƒ€‚ÉG‚ê‚½");
+            hp++;
+            lifeGauge.SetLifeGauge(hp);
+        }
+    }
+
     //ÚG”»’è
     void OnTriggerEnter2D(Collider2D col)
     {
@@ -231,10 +242,6 @@ public class PlayerController : MonoBehaviour
             SceneManager.LoadScene("ClearScene");
         }
 
-        if (col.gameObject.tag == "Item")
-        {
-            hp++;
-        }
 
         if (col.gameObject.tag == "Enemy")
         {

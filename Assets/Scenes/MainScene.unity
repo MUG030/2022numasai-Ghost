@@ -207,6 +207,10 @@ PrefabInstance:
       propertyPath: GhostSpeed
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3049791635368029927, guid: 63cfc4900a6674578a7e4d06242a3ee2, type: 3}
+      propertyPath: itemPrefab
+      value: 
+      objectReference: {fileID: 7848336080713564003, guid: 85f55563b9507a24291bef871a32ac16, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 63cfc4900a6674578a7e4d06242a3ee2, type: 3}
 --- !u!1 &24463157 stripped
@@ -490,6 +494,10 @@ PrefabInstance:
       propertyPath: GhostSpeed
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3049791635368029927, guid: 63cfc4900a6674578a7e4d06242a3ee2, type: 3}
+      propertyPath: itemPrefab
+      value: 
+      objectReference: {fileID: 7848336080713564003, guid: 85f55563b9507a24291bef871a32ac16, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 63cfc4900a6674578a7e4d06242a3ee2, type: 3}
 --- !u!1 &245313635
@@ -1208,6 +1216,10 @@ PrefabInstance:
       propertyPath: GhostSpeed
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3049791635368029927, guid: 63cfc4900a6674578a7e4d06242a3ee2, type: 3}
+      propertyPath: itemPrefab
+      value: 
+      objectReference: {fileID: 7848336080713564003, guid: 85f55563b9507a24291bef871a32ac16, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 63cfc4900a6674578a7e4d06242a3ee2, type: 3}
 --- !u!1 &507990695
@@ -3440,6 +3452,10 @@ PrefabInstance:
       propertyPath: GhostSpeed
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3049791635368029927, guid: 63cfc4900a6674578a7e4d06242a3ee2, type: 3}
+      propertyPath: itemPrefab
+      value: 
+      objectReference: {fileID: 7848336080713564003, guid: 85f55563b9507a24291bef871a32ac16, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 63cfc4900a6674578a7e4d06242a3ee2, type: 3}
 --- !u!4 &517672166 stripped
@@ -3736,6 +3752,10 @@ PrefabInstance:
       propertyPath: GhostSpeed
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3049791635368029927, guid: 63cfc4900a6674578a7e4d06242a3ee2, type: 3}
+      propertyPath: itemPrefab
+      value: 
+      objectReference: {fileID: 7848336080713564003, guid: 85f55563b9507a24291bef871a32ac16, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 63cfc4900a6674578a7e4d06242a3ee2, type: 3}
 --- !u!1 &726633831 stripped
@@ -9339,6 +9359,10 @@ PrefabInstance:
       propertyPath: GhostSpeed
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3049791635368029927, guid: 63cfc4900a6674578a7e4d06242a3ee2, type: 3}
+      propertyPath: itemPrefab
+      value: 
+      objectReference: {fileID: 7848336080713564003, guid: 85f55563b9507a24291bef871a32ac16, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 63cfc4900a6674578a7e4d06242a3ee2, type: 3}
 --- !u!1 &947721144
@@ -9494,6 +9518,10 @@ PrefabInstance:
       propertyPath: GhostSpeed
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3049791635368029927, guid: 63cfc4900a6674578a7e4d06242a3ee2, type: 3}
+      propertyPath: itemPrefab
+      value: 
+      objectReference: {fileID: 7848336080713564003, guid: 85f55563b9507a24291bef871a32ac16, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 63cfc4900a6674578a7e4d06242a3ee2, type: 3}
 --- !u!4 &1000370861 stripped
@@ -9580,6 +9608,10 @@ PrefabInstance:
       propertyPath: GhostSpeed
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3049791635368029927, guid: 63cfc4900a6674578a7e4d06242a3ee2, type: 3}
+      propertyPath: itemPrefab
+      value: 
+      objectReference: {fileID: 7848336080713564003, guid: 85f55563b9507a24291bef871a32ac16, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 63cfc4900a6674578a7e4d06242a3ee2, type: 3}
 --- !u!4 &1080125085 stripped
@@ -19068,6 +19100,10 @@ PrefabInstance:
       propertyPath: GhostSpeed
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3049791635368029927, guid: 63cfc4900a6674578a7e4d06242a3ee2, type: 3}
+      propertyPath: itemPrefab
+      value: 
+      objectReference: {fileID: 7848336080713564003, guid: 85f55563b9507a24291bef871a32ac16, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 63cfc4900a6674578a7e4d06242a3ee2, type: 3}
 --- !u!1001 &1251944076
@@ -19914,6 +19950,10 @@ PrefabInstance:
       propertyPath: GhostSpeed
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3049791635368029927, guid: 63cfc4900a6674578a7e4d06242a3ee2, type: 3}
+      propertyPath: itemPrefab
+      value: 
+      objectReference: {fileID: 7848336080713564003, guid: 85f55563b9507a24291bef871a32ac16, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 63cfc4900a6674578a7e4d06242a3ee2, type: 3}
 --- !u!1 &1508220319 stripped
@@ -20207,6 +20247,10 @@ PrefabInstance:
       propertyPath: GhostSpeed
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3049791635368029927, guid: 63cfc4900a6674578a7e4d06242a3ee2, type: 3}
+      propertyPath: itemPrefab
+      value: 
+      objectReference: {fileID: 7848336080713564003, guid: 85f55563b9507a24291bef871a32ac16, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 63cfc4900a6674578a7e4d06242a3ee2, type: 3}
 --- !u!4 &1905670902 stripped
@@ -20298,6 +20342,10 @@ PrefabInstance:
       propertyPath: GhostSpeed
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3049791635368029927, guid: 63cfc4900a6674578a7e4d06242a3ee2, type: 3}
+      propertyPath: itemPrefab
+      value: 
+      objectReference: {fileID: 7848336080713564003, guid: 85f55563b9507a24291bef871a32ac16, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 63cfc4900a6674578a7e4d06242a3ee2, type: 3}
 --- !u!1001 &1956833508
@@ -20379,6 +20427,10 @@ PrefabInstance:
       propertyPath: GhostSpeed
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3049791635368029927, guid: 63cfc4900a6674578a7e4d06242a3ee2, type: 3}
+      propertyPath: itemPrefab
+      value: 
+      objectReference: {fileID: 7848336080713564003, guid: 85f55563b9507a24291bef871a32ac16, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 63cfc4900a6674578a7e4d06242a3ee2, type: 3}
 --- !u!4 &1956833509 stripped
@@ -20470,6 +20522,10 @@ PrefabInstance:
       propertyPath: GhostSpeed
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3049791635368029927, guid: 63cfc4900a6674578a7e4d06242a3ee2, type: 3}
+      propertyPath: itemPrefab
+      value: 
+      objectReference: {fileID: 7848336080713564003, guid: 85f55563b9507a24291bef871a32ac16, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 63cfc4900a6674578a7e4d06242a3ee2, type: 3}
 --- !u!1001 &1970348786
@@ -20551,6 +20607,10 @@ PrefabInstance:
       propertyPath: GhostSpeed
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3049791635368029927, guid: 63cfc4900a6674578a7e4d06242a3ee2, type: 3}
+      propertyPath: itemPrefab
+      value: 
+      objectReference: {fileID: 7848336080713564003, guid: 85f55563b9507a24291bef871a32ac16, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 63cfc4900a6674578a7e4d06242a3ee2, type: 3}
 --- !u!4 &1970348787 stripped
@@ -20776,6 +20836,10 @@ PrefabInstance:
       propertyPath: GhostSpeed
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3049791635368029927, guid: 63cfc4900a6674578a7e4d06242a3ee2, type: 3}
+      propertyPath: itemPrefab
+      value: 
+      objectReference: {fileID: 7848336080713564003, guid: 85f55563b9507a24291bef871a32ac16, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 63cfc4900a6674578a7e4d06242a3ee2, type: 3}
 --- !u!1001 &2026698869
@@ -20857,6 +20921,10 @@ PrefabInstance:
       propertyPath: GhostSpeed
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3049791635368029927, guid: 63cfc4900a6674578a7e4d06242a3ee2, type: 3}
+      propertyPath: itemPrefab
+      value: 
+      objectReference: {fileID: 7848336080713564003, guid: 85f55563b9507a24291bef871a32ac16, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 63cfc4900a6674578a7e4d06242a3ee2, type: 3}
 --- !u!1 &2089405387
