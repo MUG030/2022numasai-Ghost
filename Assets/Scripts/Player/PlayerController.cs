@@ -231,6 +231,11 @@ public class PlayerController : MonoBehaviour
             SceneManager.LoadScene("ClearScene");
         }
 
+        if (col.gameObject.tag == "Item")
+        {
+            hp++;
+        }
+
         if (col.gameObject.tag == "Enemy")
         {
             //Debug.Log("Hit Enemy");

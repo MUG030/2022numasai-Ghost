@@ -19145,6 +19145,10 @@ PrefabInstance:
       propertyPath: GhostSpeed
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3049791635368029927, guid: 63cfc4900a6674578a7e4d06242a3ee2, type: 3}
+      propertyPath: itemPrefab
+      value: 
+      objectReference: {fileID: 7848336080713564003, guid: 85f55563b9507a24291bef871a32ac16, type: 3}
     - target: {fileID: 7196767888249868821, guid: 63cfc4900a6674578a7e4d06242a3ee2, type: 3}
       propertyPath: m_IsTrigger
       value: 1
@@ -19772,6 +19776,10 @@ PrefabInstance:
     - target: {fileID: 3721868096625800250, guid: 6833da77c8e86114ea9053e6aeef7bd3, type: 3}
       propertyPath: m_Name
       value: SoundObject
+      objectReference: {fileID: 0}
+    - target: {fileID: 3721868096625800252, guid: 6833da77c8e86114ea9053e6aeef7bd3, type: 3}
+      propertyPath: Loop
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3721868096625800252, guid: 6833da77c8e86114ea9053e6aeef7bd3, type: 3}
       propertyPath: m_Enabled
@@ -20577,6 +20585,10 @@ PrefabInstance:
     - target: {fileID: 6928710707541644768, guid: 9ad162c829b7b594d908a54a10b5aa0b, type: 3}
       propertyPath: m_Offset.y
       value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6928710707541644768, guid: 9ad162c829b7b594d908a54a10b5aa0b, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6928710707541644769, guid: 9ad162c829b7b594d908a54a10b5aa0b, type: 3}
       propertyPath: lifeGauge
