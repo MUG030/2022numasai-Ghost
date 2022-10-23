@@ -51,18 +51,22 @@ public class move : MonoBehaviour
     /// }
     //}
     void Update()
-        {
+    {
         if (checkCollision.isOn)
         {
-            houkou= houkou*-1.0f;
-           
+            houkou = houkou*-1.0f;
         }
             transform.Translate(houkou * speed, 0, 0);
             transform.localScale = new Vector3(houkou, 1, 1);
+    }
 
-
-        
-
-
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Weapon")
+        {
+            //Debug.Log("dead");
+            Destroy(gameObject, 0.0f);
         }
- }
+    }
+
+}
