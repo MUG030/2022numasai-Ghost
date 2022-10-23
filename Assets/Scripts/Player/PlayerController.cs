@@ -286,7 +286,7 @@ public class PlayerController : MonoBehaviour
                 inDamage = true;
                 // コルーチン開始
                 StartCoroutine("WaitForIt");
-                Invoke("DamageEnd", 1.0f);
+                Invoke("DamageEnd", 0.5f);
 
                 
             }
