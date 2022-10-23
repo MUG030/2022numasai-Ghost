@@ -8,8 +8,8 @@ public class CameraManager : MonoBehaviour
     [SerializeField] Vector3 cameraOrgPos = new Vector3(0, 0, -10f); // カメラの初期位置位置
     [SerializeField] Vector2 camaraMaxPos = new Vector2(100, 0); // カメラの(右,上)限界座標(画面端では追従しない)
     [SerializeField] Vector2 camaraMinPos = new Vector2(0, 0); // カメラの(左,下)限界座標(縦のカメラは固定)
-
-    void LateUpdate()
+    
+    void FixedUpdate()
     {
         Vector3 playerPos = playerTr.position; // プレイヤーの位置
         Vector3 camPos = transform.position; // カメラの位置
@@ -24,4 +24,5 @@ public class CameraManager : MonoBehaviour
         transform.position = camPos;
 
     }
+
 }
