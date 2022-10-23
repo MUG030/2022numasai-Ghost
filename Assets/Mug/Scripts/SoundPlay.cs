@@ -9,11 +9,19 @@ public class SoundPlay : MonoBehaviour
     [SerializeField] AudioClip clip1;
     [SerializeField] AudioClip clip2;
 
+    public PlayerController playerController;
+    int aSound;
+
+    private void Start()
+    {
+        aSound = playerController.Gethp();
+    }
+
     void Update()
     {
-        if (Input.GetMouseButton(0))
+        if (aSound >= 1)
         {
-            //audioSource.Play(clip1);
+            source1.PlayOneShot(clip1);
         }
 
         if (Input.GetMouseButton(1))

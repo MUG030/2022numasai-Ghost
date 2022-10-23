@@ -11,23 +11,8 @@ public class PlayerController : MonoBehaviour
 
     public float jump = 9.0f;       //ジャンプ力
     public LayerMask groundLayer;   //着地できるレイヤー
-    public LayerMask waterLayer;   //着地できるレイヤー
     bool goJump = false;            //ジャンプ開始フラグ
     bool onGround = false;          //地面に立っているフラグ
-    bool onWater = false;          //地面に立っているフラグ
-    bool isAttacking = false;       // 攻撃モーションのフラグ
-
-    //アニメーション対応
-    Animator animator;  //アニメーター
-    public string stopAnime = "PlayerStop";
-    public string moveAnime = "PlayerMove";
-    public string attackAnime = "PlayerAttack";
-    public string jumpAnime = "PlayerJump";
-    public string damageAnime = "PlayerDamage";
-    public string deadAnime = "PlayerOver";
-    string nowAnime = "";
-    string oldAnime = "";
-    public static int actState = 0;
 
     //ダメージ対応
     public static int hp = 5;       //プレイヤーのhp
@@ -41,18 +26,11 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private HeartIndicator lifeGauge;
 
-    //イベント用
-    public bool controlEnabled {get; set; } = true; //操作有効無効Bool値
-
     // Start is called before the first frame update
     void Start()
     {
         //Rigidbody2Dを持ってくる
         rbody = this.GetComponent<Rigidbody2D>();
-        //Animatorを持ってくる
-        animator = GetComponent<Animator>();
-        nowAnime = stopAnime;   
-        oldAnime = stopAnime;
         //ゲームの状態をプレイ中にする
         gameState = "playing";
         //　体力ゲージに反映
@@ -62,50 +40,36 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (controlEnabled)//ストーリーイベント用
+        //ゲーム中以外とダメージ中は何もしない
+        if (gameState != "playing" || inDamage)
         {
-            //ゲーム中以外とダメージ中は何もしない
-            if (gameState != "playing" || inDamage)
-            {
-                return;
-            }
+            return;
+        }
 
-            //水平方向のにゅうりょくをチェックする
-            axisH = Input.GetAxisRaw("Horizontal");
-            //向きの調整
-            if (axisH > 0.0f)
-            {
-                //右移動
-                //Debug.Log("右移動");
-                actState = 1;
-                transform.localScale = new Vector2(1, 1);
-            }
-            else if (axisH < 0.0f)
-            {
-                //左移動
-                //Debug.Log("左移動");
-                actState = 1;
-                transform.localScale = new Vector2(-1, 1); //左右反転させる 
-            }
-            //キャラをジャンプさせる
-            if (Input.GetButtonDown("Jump"))
-            {
-                Jump();     //ジャンプ
-            }
-
-            Attack();
+        //水平方向のにゅうりょくをチェックする
+        axisH = Input.GetAxisRaw("Horizontal");
+        //向きの調整
+        if (axisH > 0.0f)
+        {
+            //右移動
+            Debug.Log("右移動");
+            transform.localScale = new Vector2(1, 1);
+        }
+        else if (axisH < 0.0f)
+        {
+            //左移動
+            Debug.Log("左移動");
+            transform.localScale = new Vector2(-1, 1); //左右反転させる 
+        }
+        //キャラをジャンプさせる
+        if (Input.GetButtonDown("Jump"))
+        {
+            Jump();     //ジャンプ
         }
     }
 
     void FixedUpdate()
     {
-
-        // 攻撃アニメ再生中は、以下の処理しない　　　　　　　　　　　　　
-        if (animator.GetCurrentAnimatorStateInfo(0).IsName("PlayerAttack"))
-        {
-            return;
-        }
-
         //ゲーム中は何もしない
         if (gameState != "playing")
         {
@@ -126,110 +90,32 @@ public class PlayerController : MonoBehaviour
                 //スプライトを非表示
                 gameObject.GetComponent<SpriteRenderer>().enabled = false;
             }
-
             return;     //ダメージ中は操作による影響を受けない
         }
-
         //地上判定
         onGround = Physics2D.Linecast(transform.position, transform.position - (transform.up * 0.9f), groundLayer);
-        onWater = Physics2D.Linecast(transform.position, transform.position - (transform.up * 0.9f), waterLayer);
 
-        if (onGround || axisH != 0 && !onWater)
+        if (onGround || axisH != 0)
         {
-            //地面の上or速度が0ではない、の二つを満たしていてかつ水面ではない
+            //地面の上or速度が0ではない
             //速度の更新
-            speed = 3.0f;
             rbody.velocity = new Vector2(axisH * speed, rbody.velocity.y);
         }
-        else if (onWater || axisH != 0)
-        {
-            //水面での速度の更新
-            speed = 1.7f;
-            rbody.velocity = new Vector2(axisH * speed, rbody.velocity.y);
-        }
-
         if (onGround && goJump)
         {
             //地面の上でジャンプキーが押された
             //ジャンプさせる
-            //Debug.Log("ジャンプ!");
+            Debug.Log("ジャンプ!");
             Vector2 jumpPw = new Vector2(0, jump);          //ジャンプさせるベクトルを作る
             rbody.AddForce(jumpPw, ForceMode2D.Impulse);    //瞬間的な力を加える
             goJump = false; //ジャンプフラグを下ろす
         }
-        else if (onWater && goJump)
-        {
-            //水面でジャンプキーが押された
-            //ジャンプさせる
-            Vector2 jumpPw = new Vector2(0, jump);          //ジャンプさせるベクトルを作る
-            rbody.AddForce(jumpPw, ForceMode2D.Impulse);    //瞬間的な力を加える
-            goJump = false; //ジャンプフラグを下ろす
-        }
-
-        //停止と移動と攻撃のアニメーション
-        if (onGround)
-        {
-            //地面の上
-            if (actState == 0)
-            {
-                nowAnime = stopAnime;   //停止中
-            }
-            else if (actState == 1)
-            {
-                nowAnime = moveAnime;   //移動中
-                actState = 0;
-            }
-        }
-        else　                          //空中
-        {
-            nowAnime = jumpAnime;        
-        }
-
-        if (nowAnime != oldAnime)
-        {
-            oldAnime = nowAnime;
-            animator.Play(nowAnime);    // アニメーション再生
-        }
-
-        
-
     }
-
-    public void Attack()
-    {
-        //攻撃アニメーション時(Qキーを押すと攻撃開始)
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            //攻撃中
-            animator.Play(attackAnime);
-            //移動停止
-            rbody.velocity = new Vector2(0, 0);
-        }
-    }
-
     //ジャンプ
     public void Jump()
     {
         goJump = true;      //ジャンプフラグを立てる
-        //Debug.Log("ジャンプボタン押し!");
-    }
-
-    // 攻撃アニメーション終了関数
-    IEnumerable endMotionAnime()
-    {
-        yield return new WaitForSeconds(1);
-        actState = 0;
-    }
-
-    void OnCollisionEnter2D(Collision2D col)
-    {
-        //体力回復処理
-        if (col.gameObject.tag == "Item" & hp <= 4)
-        {
-            Debug.Log("回復アイテムに触れた");
-            hp++;
-            lifeGauge.SetLifeGauge(hp);
-        }
+        Debug.Log("ジャンプボタン押し!");
     }
 
     //接触判定
@@ -237,29 +123,13 @@ public class PlayerController : MonoBehaviour
     {
         if (col.gameObject.tag == "Clear")//Clearのタグが付くオブジェクトに接触したらクリアシーンへの切り替え
         {
-            //Debug.Log("Touch Goal");
-            hp = 5;
             SceneManager.LoadScene("ClearScene");
+            Debug.Log("Touch Goal");
         }
 
-
-        if (col.gameObject.tag == "Enemy")
+        if (col.gameObject.tag == "Enemy")//Clearのタグが付くオブジェクトに接触したらクリアシーンへの切り替え
         {
-            //Debug.Log("Hit Enemy");
-            //ダメージアニメーション
-
-            // 攻撃アニメ再生中は、以下の処理しない(無敵判定)
-            if (animator.GetCurrentAnimatorStateInfo(0).IsName("PlayerAttack"))
-            {
-                return;
-            }
-
-            if (gameState == "gameover")
-            {
-                return;
-            }
-
-            animator.Play(damageAnime);
+            Debug.Log("Hit Enemy");
 
             // ダメージ中は処理スキップ
             if (inDamage)
@@ -267,10 +137,9 @@ public class PlayerController : MonoBehaviour
                 return;
             }
 
-
             hp--;       //HPを減らす
 
-            if (hp >= 1)
+            if (hp >= 0)
             {
                 //移動停止
                 rbody.velocity = new Vector2(0, 0);
@@ -290,8 +159,8 @@ public class PlayerController : MonoBehaviour
                 //ダメージフラグON
                 inDamage = true;
                 // コルーチン開始
-                //StartCoroutine("WaitForIt");
-                Invoke("DamageEnd", 0.5f);
+                StartCoroutine("WaitForIt");
+                Invoke("DamageEnd", 1.0f);
 
                 
             }
@@ -318,19 +187,11 @@ public class PlayerController : MonoBehaviour
         //スプライトを元に戻す
         gameObject.GetComponent<SpriteRenderer>().enabled = true;
     }
-
-    public void WaitDead()
-    {
-        SceneManager.LoadScene("TitleScene");
-        hp = 5;
-    }
-
     //ゲームオーバー
     void GameOver()
     {
         Debug.Log("ゲームオーバー");
-        gameState = "gameover";
-        animator.Play(deadAnime);
-        Invoke("WaitDead", 1.0f);
+        //gameState = "gameover";
+
     }
 }
