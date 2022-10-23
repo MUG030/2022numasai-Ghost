@@ -197,6 +197,7 @@ MonoBehaviour:
   target: {fileID: 0}
   GhostSpeed: 2
   GetCoordinate: 2
+  itemPrefab: {fileID: 7848336080713564003, guid: 85f55563b9507a24291bef871a32ac16, type: 3}
 --- !u!50 &404894143290965166
 Rigidbody2D:
   serializedVersion: 4

@@ -221,6 +221,17 @@ public class PlayerController : MonoBehaviour
         actState = 0;
     }
 
+    void OnCollisionEnter2D(Collision2D col)
+    {
+        //体力回復処理
+        if (col.gameObject.tag == "Item")
+        {
+            Debug.Log("回復アイテムに触れた");
+            hp++;
+            lifeGauge.SetLifeGauge(hp);
+        }
+    }
+
     //接触判定
     void OnTriggerEnter2D(Collider2D col)
     {
@@ -230,6 +241,7 @@ public class PlayerController : MonoBehaviour
             hp = 5;
             SceneManager.LoadScene("ClearScene");
         }
+
 
         if (col.gameObject.tag == "Enemy")
         {
@@ -274,7 +286,7 @@ public class PlayerController : MonoBehaviour
                 inDamage = true;
                 // コルーチン開始
                 StartCoroutine("WaitForIt");
-                Invoke("DamageEnd", 1.0f);
+                Invoke("DamageEnd", 0.5f);
 
                 
             }

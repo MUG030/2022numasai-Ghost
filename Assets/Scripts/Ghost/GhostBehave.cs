@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class GhostBehave : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class GhostBehave : MonoBehaviour
     Renderer targetRenderer;
     Vector2 direction = Vector2.zero;
     float coordinateTimer = 0;
+    [Header("ドロップアイテム"), SerializeField] public GameObject itemPrefab;
+    float random;
     // float radian = 0;
     // Start is called before the first frame update
 
@@ -20,7 +23,7 @@ public class GhostBehave : MonoBehaviour
         targetRenderer = GetComponent<Renderer>();
     }
 
-
+    
     // Update is called once per frame
     void Update()
     {
@@ -71,6 +74,11 @@ public class GhostBehave : MonoBehaviour
         {
             //Debug.Log("dead");
             Destroy(gameObject, 0.2f);
+            random = Random.Range(0f, 100f);
+            if (random <= 50)
+            {
+                Instantiate(itemPrefab, transform.position, Quaternion.identity);
+            }
         }
     }
 }
