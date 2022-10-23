@@ -224,7 +224,7 @@ public class PlayerController : MonoBehaviour
     void OnCollisionEnter2D(Collision2D col)
     {
         //‘Ì—Í‰ñ•œˆ—
-        if (col.gameObject.tag == "Item")
+        if (col.gameObject.tag == "Item" & hp <= 4)
         {
             Debug.Log("‰ñ•œƒAƒCƒeƒ€‚ÉG‚ê‚½");
             hp++;
