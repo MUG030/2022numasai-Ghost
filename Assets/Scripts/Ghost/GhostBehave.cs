@@ -1,24 +1,29 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class GhostBehave : MonoBehaviour
 {
     [Header("追いかけられる側"),SerializeField]GameObject target;
     [Header("お化けの速さ"),SerializeField]float GhostSpeed = 0.4f;
     [Header("何秒に1回相手の座標を取得するか"),SerializeField]float GetCoordinate = 5f;
+    Renderer targetRenderer;
     Vector2 direction = Vector2.zero;
     float coordinateTimer = 0;
+    [Header("ドロップアイテム"), SerializeField] public GameObject itemPrefab;
+    float random;
     // float radian = 0;
     // Start is called before the first frame update
 
-    [Header("幽霊から出るもの"),SerializeField]public GameObject prefabGhostHart;
+    //[Header("幽霊から出るもの"),SerializeField]public GameObject prefabGhostHart;
     void Start()
     {
         GetCoordinate = coordinateTimer;
+        targetRenderer = GetComponent<Renderer>();
     }
 
-
+    
     // Update is called once per frame
     void Update()
     {
@@ -26,8 +31,12 @@ public class GhostBehave : MonoBehaviour
         // if(radian >= 2){
         //     radian = 0;
         // }
-  
-        GhostMove();
+        
+        if (targetRenderer.isVisible)
+        {
+            // 画面内にいるときの処理
+            GhostMove();
+        }
     }
 
     Vector2 Coordinate()
@@ -56,6 +65,20 @@ public class GhostBehave : MonoBehaviour
         this.transform.Translate(Vector2.up * Time.deltaTime * GhostSpeed);
     }
     private void OnDestroy() {
-        Instantiate(prefabGhostHart, new Vector2(0,0), Quaternion.identity);
+        //Instantiate(prefabGhostHart, new Vector2(0,0), Quaternion.identity);
+    }
+    
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Weapon")
+        {
+            //Debug.Log("dead");
+            Destroy(gameObject, 0.2f);
+            random = Random.Range(0f, 100f);
+            if (random <= 50)
+            {
+                Instantiate(itemPrefab, transform.position, Quaternion.identity);
+            }
+        }
     }
 }
