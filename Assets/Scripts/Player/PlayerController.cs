@@ -318,11 +318,19 @@ public class PlayerController : MonoBehaviour
         //スプライトを元に戻す
         gameObject.GetComponent<SpriteRenderer>().enabled = true;
     }
+
+    public void WaitDead()
+    {
+        SceneManager.LoadScene("TitleScene");
+        hp = 5;
+    }
+
     //ゲームオーバー
     void GameOver()
     {
         Debug.Log("ゲームオーバー");
         gameState = "gameover";
         animator.Play(deadAnime);
+        Invoke("WaitDead", 1.0f);
     }
 }
