@@ -254,6 +254,11 @@ public class PlayerController : MonoBehaviour
                 return;
             }
 
+            if (gameState == "gameover")
+            {
+                return;
+            }
+
             animator.Play(damageAnime);
 
             // ダメージ中は処理スキップ
