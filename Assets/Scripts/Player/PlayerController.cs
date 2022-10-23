@@ -290,7 +290,7 @@ public class PlayerController : MonoBehaviour
                 //ダメージフラグON
                 inDamage = true;
                 // コルーチン開始
-                StartCoroutine("WaitForIt");
+                //StartCoroutine("WaitForIt");
                 Invoke("DamageEnd", 0.5f);
 
                 
