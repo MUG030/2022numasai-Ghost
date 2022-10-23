@@ -24,7 +24,7 @@ public class PlayerController : MonoBehaviour
     public string attackAnime = "PlayerAttack";
     public string jumpAnime = "PlayerJump";
     public string damageAnime = "PlayerDamage";
-    public string deadAnime = "PlayerOver";
+    public static string deadAnime = "PlayerOver";
     string nowAnime = "";
     string oldAnime = "";
     public static int actState = 0;
@@ -99,7 +99,6 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-
         // 攻撃アニメ再生中は、以下の処理しない　　　　　　　　　　　　　
         if (animator.GetCurrentAnimatorStateInfo(0).IsName("PlayerAttack"))
         {
@@ -191,7 +190,7 @@ public class PlayerController : MonoBehaviour
             animator.Play(nowAnime);    // アニメーション再生
         }
 
-        
+
 
     }
 
@@ -284,11 +283,7 @@ public class PlayerController : MonoBehaviour
 
                 //ダメージフラグON
                 inDamage = true;
-                // コルーチン開始
-                StartCoroutine("WaitForIt");
                 Invoke("DamageEnd", 0.5f);
-
-                
             }
             else
             {
@@ -300,11 +295,6 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    IEnumerable WaitForIt()
-    {
-        yield return new WaitForSeconds(10);
-    }
-
     //ダメージ終了
     void DamageEnd()
     {
@@ -313,11 +303,19 @@ public class PlayerController : MonoBehaviour
         //スプライトを元に戻す
         gameObject.GetComponent<SpriteRenderer>().enabled = true;
     }
+
+    public void WaitDead()
+    {
+        SceneManager.LoadScene("TitleScene"); 
+        hp = 5;
+    }
+
     //ゲームオーバー
     void GameOver()
     {
         Debug.Log("ゲームオーバー");
         gameState = "gameover";
         animator.Play(deadAnime);
+        Invoke("WaitDead", 1.0f);
     }
 }
