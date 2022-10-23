@@ -9,6 +9,8 @@ public class move : MonoBehaviour
     public float speed = 0.01f;
     public float houkou = 1.0f;
     public EnemyCollisionCheck checkCollision;
+    [Header("ドロップアイテム"), SerializeField] public GameObject itemPrefab;
+    float random;
     //private float p1=0.0f;
     //public trigger checkCollision;
     //private string enemyTag = "Enemy";
@@ -51,18 +53,29 @@ public class move : MonoBehaviour
     /// }
     //}
     void Update()
-        {
+    {
         if (checkCollision.isOn)
         {
             houkou= houkou*-1.0f;
-           
         }
             transform.Translate(houkou * speed, 0, 0);
             transform.localScale = new Vector3(houkou, 1, 1);
-
-
-        
-
-
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Weapon")
+        {
+            //Debug.Log("dead");
+            Destroy(gameObject, 0.2f);
         }
- }
+
+        if (collision.gameObject.tag == "Player")
+        {
+            //移動停止
+            rigid2D.velocity = new Vector2(0, 0);
+            //Debug.Log("dead");
+            Destroy(gameObject, 0.2f);
+        }
+    }
+
+}

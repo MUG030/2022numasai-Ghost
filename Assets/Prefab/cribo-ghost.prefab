@@ -149,6 +149,7 @@ MonoBehaviour:
   speed: 0.01
   houkou: -1
   checkCollision: {fileID: 1390206421109355440}
+  itemPrefab: {fileID: 7848336080713564003, guid: 85f55563b9507a24291bef871a32ac16, type: 3}
 --- !u!1 &1390206421109355447
 GameObject:
   m_ObjectHideFlags: 0
