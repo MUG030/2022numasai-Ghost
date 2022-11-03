@@ -1155,7 +1155,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: "\u30AF\u30EA\u30C3\u30AF\u3067\u9032\u3080"
+          m_StringArgument: "\u30B9\u30DA\u30FC\u30B9\u3067\u9032\u3080"
           m_BoolArgument: 0
         m_CallState: 2
   - m_PersistentCalls:
@@ -1181,7 +1181,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: "\u30AF\u30EA\u30C3\u30AF\u3067\u9032\u3080"
+          m_StringArgument: "\u30B9\u30DA\u30FC\u30B9\u3067\u9032\u3080"
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &493313008
