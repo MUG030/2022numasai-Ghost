@@ -14,13 +14,15 @@ public class GameEvent : MonoBehaviour
     [Tooltip("イベント終了時の処理")]
     [SerializeField] UnityEvent endEvent;
 
-    [Tooltip("Fire1で進むイベント")]
+    [Tooltip("スペースで進むイベント")]
     [HideInInspector] public UnityEvent[] events;
 
     public void Play()
     {
         StartCoroutine(Progress());
     }
+
+    bool pushFlag = false;
 
     IEnumerator Progress()
     {
@@ -29,7 +31,7 @@ public class GameEvent : MonoBehaviour
         foreach( var ev in events)
         {
             ev.Invoke();
-            yield return new WaitUntil(()=> Input.GetButtonDown("Fire1"));
+            yield return new WaitUntil(()=> Input.GetKeyDown(KeyCode.Space));
             yield return null;
         }
 
