@@ -43,7 +43,7 @@ public class GhostBehave : MonoBehaviour
     {
     // 対象物へのベクトルを算出
     Vector2 toDirection = target.transform.position - transform.position;
-    Debug.Log("Load coordinate");
+    //Debug.Log("Load coordinate");
     return toDirection;
     }
 

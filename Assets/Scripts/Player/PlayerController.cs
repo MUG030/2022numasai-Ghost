@@ -115,7 +115,7 @@ public class PlayerController : MonoBehaviour
         {
             //ダメージ中は点滅する
             float val = Mathf.Sin(Time.time * 50);
-            Debug.Log(val);
+            //Debug.Log(val);
             if (val > 0)
             {
                 //スプライトを表示
@@ -226,23 +226,13 @@ public class PlayerController : MonoBehaviour
         //体力回復処理
         if (col.gameObject.tag == "Item" & hp <= 4)
         {
-            Debug.Log("回復アイテムに触れた");
+            //Debug.Log("回復アイテムに触れた");
             hp++;
             lifeGauge.SetLifeGauge(hp);
         }
-    }
 
-    //接触判定
-    void OnTriggerEnter2D(Collider2D col)
-    {
-        if (col.gameObject.tag == "Clear")//Clearのタグが付くオブジェクトに接触したらクリアシーンへの切り替え
-        {
-            //Debug.Log("Touch Goal");
-            hp = 5;
-            SceneManager.LoadScene("ClearScene");
-        }
-
-
+        //敵との衝突処理
+        Vector2 hitPoint = new Vector2();
         if (col.gameObject.tag == "Enemy")
         {
             //Debug.Log("Hit Enemy");
@@ -267,21 +257,27 @@ public class PlayerController : MonoBehaviour
                 return;
             }
 
-
             hp--;       //HPを減らす
 
             if (hp >= 1)
             {
                 //移動停止
                 rbody.velocity = new Vector2(0, 0);
-                //敵キャラの反対方向にヒットバックさせる
-                if (transform.localScale.x >= 0)
+
+                //ノックバック処理
+                foreach (ContactPoint2D contact in col.contacts)
                 {
-                    this.rbody.AddForce(transform.right * -100.0f);
-                } 
-                else
-                {
-                    this.rbody.AddForce(transform.right * 100.0f);
+                    hitPoint = contact.point;
+                    if (hitPoint.x >= transform.position.x)
+                    {
+                        //Debug.Log("L");
+                        this.rbody.AddForce(transform.right * -100.0f);
+                    }
+                    else
+                    {
+                        //Debug.Log("R");
+                        this.rbody.AddForce(transform.right * 100.0f);
+                    }
                 }
 
                 lifeGauge.SetLifeGauge(hp);
@@ -292,18 +288,31 @@ public class PlayerController : MonoBehaviour
                 // コルーチン開始
                 //StartCoroutine("WaitForIt");
                 Invoke("DamageEnd", 0.5f);
-
-                
             }
             else
             {
                 //ゲームオーバー
                 GameOver();
             }
-
         }
 
+        // Clearのタグが付くオブジェクトに接触
+        if (col.gameObject.tag == "Clear")
+        {
+            //Debug.Log("Touch Goal");
+            hp = 5;
+            SceneManager.LoadScene("ClearScene");
+        }
+
+        // Enemyのタグが付くオブジェクトに接触
+        if (col.gameObject.tag == "Enemy")
+        {
+
+        }
     }
+
+    //接触判定
+    void OnTriggerEnter2D(Collider2D col) {}
 
     IEnumerable WaitForIt()
     {
@@ -332,5 +341,12 @@ public class PlayerController : MonoBehaviour
         gameState = "gameover";
         animator.Play(deadAnime);
         Invoke("WaitDead", 1.0f);
+    }
+
+    // 衝突発生時の処理
+    private void OnCollisionEnter(Collision collision)
+    {
+
+
     }
 }
