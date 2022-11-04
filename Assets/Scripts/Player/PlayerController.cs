@@ -44,6 +44,8 @@ public class PlayerController : MonoBehaviour
     //イベント用
     public bool controlEnabled {get; set; } = true; //操作有効無効Bool値
 
+    public float knockBackPower;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -230,9 +232,13 @@ public class PlayerController : MonoBehaviour
             hp++;
             lifeGauge.SetLifeGauge(hp);
         }
+    }
 
+    //接触判定
+    void OnTriggerEnter2D(Collider2D col) 
+    {
         //敵との衝突処理
-        Vector2 hitPoint = new Vector2();
+        
         if (col.gameObject.tag == "Enemy")
         {
             //Debug.Log("Hit Enemy");
@@ -265,20 +271,18 @@ public class PlayerController : MonoBehaviour
                 rbody.velocity = new Vector2(0, 0);
 
                 //ノックバック処理
-                foreach (ContactPoint2D contact in col.contacts)
+                Vector2 hitPoint = (this.transform.position - col.transform.position).normalized;
+                if (hitPoint.x >= 0)
                 {
-                    hitPoint = contact.point;
-                    if (hitPoint.x >= transform.position.x)
-                    {
-                        //Debug.Log("L");
-                        this.rbody.AddForce(transform.right * -100.0f);
-                    }
-                    else
-                    {
-                        //Debug.Log("R");
-                        this.rbody.AddForce(transform.right * 100.0f);
-                    }
+                    //Debug.Log("R");
+                    this.rbody.AddForce(transform.right * 110.0f);
                 }
+                else
+                {
+                    //Debug.Log("L");
+                    this.rbody.AddForce(transform.right * -110.0f);
+                }
+                //rbody.AddForce(hitPoint * 4, ForceMode2D.Impulse);
 
                 lifeGauge.SetLifeGauge(hp);
                 lifeGauge.SetLifeGauge2(hp);
@@ -303,16 +307,7 @@ public class PlayerController : MonoBehaviour
             hp = 5;
             SceneManager.LoadScene("ClearScene");
         }
-
-        // Enemyのタグが付くオブジェクトに接触
-        if (col.gameObject.tag == "Enemy")
-        {
-
-        }
     }
-
-    //接触判定
-    void OnTriggerEnter2D(Collider2D col) {}
 
     IEnumerable WaitForIt()
     {
@@ -341,12 +336,5 @@ public class PlayerController : MonoBehaviour
         gameState = "gameover";
         animator.Play(deadAnime);
         Invoke("WaitDead", 1.0f);
-    }
-
-    // 衝突発生時の処理
-    private void OnCollisionEnter(Collision collision)
-    {
-
-
     }
 }

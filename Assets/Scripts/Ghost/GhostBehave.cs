@@ -49,7 +49,6 @@ public class GhostBehave : MonoBehaviour
 
     void GhostMove()
     {
-        
         coordinateTimer += Time.deltaTime;
         if(coordinateTimer > GetCoordinate )
         {
@@ -61,7 +60,7 @@ public class GhostBehave : MonoBehaviour
         
         // 対象物へ回転する
         transform.rotation = Quaternion.FromToRotation(Vector2.up, direction);
-        //対象物へ接近
+        // 対象物へ接近
         this.transform.Translate(Vector2.up * Time.deltaTime * GhostSpeed);
     }
     private void OnDestroy() {
