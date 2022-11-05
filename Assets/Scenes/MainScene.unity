@@ -20250,6 +20250,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7344871980283091147, guid: 09f97fb28c3ab544190428410659b85f, type: 3}
+      propertyPath: LostlifeObj
+      value: 
+      objectReference: {fileID: 1453787688285587578, guid: f45789d0e24e28b43be360642578d649, type: 3}
     - target: {fileID: 7344871980707129753, guid: 09f97fb28c3ab544190428410659b85f, type: 3}
       propertyPath: m_Pivot.x
       value: 0
