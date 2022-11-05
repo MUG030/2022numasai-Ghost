@@ -19,42 +19,15 @@ public class move : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        /*Vector3 hitPos;
-        foreach (ContactPoint point in other.contacts)
-        {
-            hitPos = point.point;
-            if (hitPos.y <0.5)
-            {
-                houkou = -1.0f;
-            }
-        }*/
-        /*if (other.gameObject.name == "BlockTile")
-        {
-            houkou = -1.0f;
-        }
-        //transform.localScale = new Vector3(houkou, 1, 1);
-        Debug.Log("butukatta");
-        */
+
 
     }
 
-    /*private void OnCollisionEnter2D(Collision2D collision)
-    {
-        houkou = -1.0f;
-    }*/
-    // Update is called once per frame
-    //private void OnCollisionEnter2D(Collision2D collision)
-    //{
-    ///if(collision.collider.tag ==enemyTag)
-    ///{
-    /// Debug.Log("てきとぶつかった。");
-    /// }
-    //}
     void Update()
     {
         if (checkCollision.isOn)
         {
-            houkou = houkou*-1.0f;
+            houkou = houkou * -1.0f;
         }
             transform.Translate(houkou * speed, 0, 0);
             transform.localScale = new Vector3(houkou, 1, 1);
