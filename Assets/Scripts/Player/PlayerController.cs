@@ -113,6 +113,7 @@ public class PlayerController : MonoBehaviour
         {
             return;
         }
+
         if (inDamage)
         {
             //ダメージ中は点滅する
@@ -143,6 +144,7 @@ public class PlayerController : MonoBehaviour
             speed = 3.0f;
             rbody.velocity = new Vector2(axisH * speed, rbody.velocity.y);
         }
+
         else if (onWater || axisH != 0)
         {
             //水面での速度の更新
@@ -161,8 +163,8 @@ public class PlayerController : MonoBehaviour
         }
         else if (onWater && goJump)
         {
-            //水面でジャンプキーが押された
-            //ジャンプさせる
+            //  水面でジャンプキーが押された
+            //  ジャンプさせる
             Vector2 jumpPw = new Vector2(0, jump);          //ジャンプさせるベクトルを作る
             rbody.AddForce(jumpPw, ForceMode2D.Impulse);    //瞬間的な力を加える
             goJump = false; //ジャンプフラグを下ろす
@@ -212,11 +214,11 @@ public class PlayerController : MonoBehaviour
     //ジャンプ
     public void Jump()
     {
-        goJump = true;      //ジャンプフラグを立てる
-        //Debug.Log("ジャンプボタン押し!");
+        goJump = true;      //  ジャンプフラグを立てる
+        //  Debug.Log("ジャンプボタン押し!");
     }
 
-    // 攻撃アニメーション終了関数
+    //  攻撃アニメーション終了関数
     IEnumerable endMotionAnime()
     {
         yield return new WaitForSeconds(1);
