@@ -27026,6 +27026,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7344871980283091145, guid: 09f97fb28c3ab544190428410659b85f, type: 3}
+      propertyPath: m_Color.a
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7344871980283091146, guid: 09f97fb28c3ab544190428410659b85f, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 0
