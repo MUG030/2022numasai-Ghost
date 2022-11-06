@@ -4,27 +4,24 @@ using UnityEngine;
 
 public class SoundPlayer : MonoBehaviour
 {
-    public AudioClip SEJump;
     public AudioClip SEMove;
     public AudioClip SEAttack;
-    public AudioClip SEDamage;
+    public AudioClip SERecovery;
 
     AudioSource audioSource;
+    
+    int recovery;
 
     // Start is called before the first frame update
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
+        recovery = PlayerController.hp;
     }
 
     // Update is called once per frame
     void Update()
     {
-        //  ジャンプ音
-        if (Input.GetButtonDown("Jump"))
-        {
-            audioSource.PlayOneShot(SEJump);
-        }
 
         //  移動音
         if (Input.GetButtonDown("Horizontal"))
@@ -40,12 +37,13 @@ public class SoundPlayer : MonoBehaviour
 
     }
 
-    void OnTriggerEnter2D(Collider2D col)
+    void OnCollisionEnter2D(Collision2D col)
     {
-        //  ダメージ音
-        if(col.gameObject.tag == "Enemy")
+        //体力回復処理
+        if (col.gameObject.tag == "Item" & recovery <= 4)
         {
-            audioSource.PlayOneShot(SEDamage);
+            audioSource.PlayOneShot(SERecovery);
+            Debug.Log("回復");
         }
     }
 }

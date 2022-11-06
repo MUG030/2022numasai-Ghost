@@ -29,6 +29,12 @@ public class PlayerController : MonoBehaviour
     string oldAnime = "";
     public static int actState = 0;
 
+    //  SE関連
+    public AudioClip SEJump;
+    public AudioClip SEDamage;
+    public AudioClip SERecovery;
+    AudioSource audioSource;
+
     //ダメージ対応
     public static int hp = 5;       //プレイヤーのhp
     public int Gethp()              //取得関数
@@ -59,6 +65,7 @@ public class PlayerController : MonoBehaviour
         gameState = "playing";
         //　体力ゲージに反映
         lifeGauge.SetLifeGauge(hp);
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -215,6 +222,7 @@ public class PlayerController : MonoBehaviour
     public void Jump()
     {
         goJump = true;      //  ジャンプフラグを立てる
+        audioSource.PlayOneShot(SEJump);    //  ジャンプ音
         //  Debug.Log("ジャンプボタン押し!");
     }
 
@@ -233,6 +241,7 @@ public class PlayerController : MonoBehaviour
             //Debug.Log("回復アイテムに触れた");
             hp++;
             lifeGauge.SetLifeGauge(hp);
+            audioSource.PlayOneShot(SERecovery);
         }
     }
 
@@ -285,6 +294,12 @@ public class PlayerController : MonoBehaviour
                     this.rbody.AddForce(transform.right * -110.0f);
                 }
                 //rbody.AddForce(hitPoint * 4, ForceMode2D.Impulse);
+
+                //  ダメージ音
+                if (col.gameObject.tag == "Enemy")
+                {
+                    audioSource.PlayOneShot(SEDamage);
+                }
 
                 lifeGauge.SetLifeGauge(hp);
                 lifeGauge.SetLifeGauge2(hp);
