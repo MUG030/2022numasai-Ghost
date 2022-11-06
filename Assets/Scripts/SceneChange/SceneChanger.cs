@@ -21,18 +21,8 @@ public class SceneChanger : MonoBehaviour
         SceneManager.LoadScene("ClearScene");
     }
 
-    /*void OnTriggerEnter2D(Collider2D col)
+    public void SCCredit()
     {
-        if (col.gameObject.tag == "Clear")//Clearのタグが付くオブジェクトに接触したらクリアシーンへの切り替え
-        {
-               SceneManager.LoadScene("ClearScene");
-               Debug.Log("Touch Goal");
-        }
-
-       if (col.gameObject.tag == "Enemy")//Clearのタグが付くオブジェクトに接触したらクリアシーンへの切り替え
-       {
-           Debug.Log("Hit Enemy");
-       }
-
-   }*/
+        SceneManager.LoadScene("Credit");
+    }
 }
