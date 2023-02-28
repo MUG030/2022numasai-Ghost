@@ -5,14 +5,16 @@ using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
+    public static PlayerController instance;    //instance化
     Rigidbody2D rbody;              //Rigidbody2D型の変数
-    float axisH = 0.0f;             //入力
+    public float axisH = 0.0f;             //入力
     public float speed = 3.0f;      //移動速度
 
     public float jump = 9.0f;       //ジャンプ力
     public LayerMask groundLayer;   //着地できるレイヤー
     public LayerMask waterLayer;   //着地できるレイヤー
     bool goJump = false;            //ジャンプ開始フラグ
+    bool goDash = false;            //ダッシュ開始フラグ
     bool onGround = false;          //地面に立っているフラグ
     bool onWater = false;          //地面に立っているフラグ
     bool isAttacking = false;       // 攻撃モーションのフラグ
@@ -52,6 +54,14 @@ public class PlayerController : MonoBehaviour
 
     public float knockBackPower;
 
+    public void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -69,7 +79,7 @@ public class PlayerController : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    public void Update()
     {
         if (controlEnabled)//ストーリーイベント用
         {
@@ -101,6 +111,12 @@ public class PlayerController : MonoBehaviour
             {
                 Jump();     //ジャンプ
             }
+
+            /*// キャラをダッシュさせる
+            if(Input.GetKey(KeyCode.LeftShift))
+            {
+                Dash();     //ダッシュ
+            }*/
 
             Attack();
         }
@@ -163,7 +179,6 @@ public class PlayerController : MonoBehaviour
         {
             //地面の上でジャンプキーが押された
             //ジャンプさせる
-            //Debug.Log("ジャンプ!");
             Vector2 jumpPw = new Vector2(0, jump);          //ジャンプさせるベクトルを作る
             rbody.AddForce(jumpPw, ForceMode2D.Impulse);    //瞬間的な力を加える
             goJump = false; //ジャンプフラグを下ろす
@@ -175,6 +190,17 @@ public class PlayerController : MonoBehaviour
             Vector2 jumpPw = new Vector2(0, jump);          //ジャンプさせるベクトルを作る
             rbody.AddForce(jumpPw, ForceMode2D.Impulse);    //瞬間的な力を加える
             goJump = false; //ジャンプフラグを下ろす
+        }
+
+        //  ダッシュ機能
+        if (goDash)
+        {
+            Debug.Log("ダッシュ");
+            //  ダッシュさせる
+            speed = 9.0f;
+            Vector2 force = new Vector2(axisH * speed, 0);
+            rbody.AddForce(force, ForceMode2D.Impulse);
+            goDash = false;
         }
 
         //停止と移動と攻撃のアニメーション
@@ -223,7 +249,14 @@ public class PlayerController : MonoBehaviour
     {
         goJump = true;      //  ジャンプフラグを立てる
         audioSource.PlayOneShot(SEJump);    //  ジャンプ音
-        //  Debug.Log("ジャンプボタン押し!");
+    }
+
+    /// <summary>
+    /// ダッシュ
+    /// </summary>
+    public void Dash()
+    {
+        goDash = true;
     }
 
     //  攻撃アニメーション終了関数
