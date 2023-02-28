@@ -16,7 +16,7 @@ public class PlayerAddAction : MonoBehaviour
     void Update()
     {
         // キャラをダッシュさせる
-        if (Input.GetButtonDown("Fire3"))
+        if (Input.GetButtonDown("Fire3") && PlayerController.instance.axisH != 0.0f)
         {
             Dash();     //ダッシュ
         }
