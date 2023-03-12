@@ -157,8 +157,8 @@ public class PlayerController : MonoBehaviour
         }
 
         //ínè„îªíË
-        onGround = Physics2D.Linecast(transform.position, transform.position - (transform.up * 0.9f), groundLayer);
-        onWater = Physics2D.Linecast(transform.position, transform.position - (transform.up * 0.9f), waterLayer);
+        onGround = Physics2D.Linecast(transform.position, transform.position - (transform.up * 1.2f), groundLayer);
+        onWater = Physics2D.Linecast(transform.position, transform.position - (transform.up * 1.2f), waterLayer);
 
         if (onGround || axisH != 0 && !onWater)
         {
