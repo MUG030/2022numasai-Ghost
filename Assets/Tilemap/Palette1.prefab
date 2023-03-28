@@ -330,19 +330,19 @@ Tilemap:
   - m_RefCount: 1
     m_Data: {fileID: 11400000, guid: 6bd33842f411d6749b253be289912252, type: 2}
   - m_RefCount: 1
-    m_Data: {fileID: 11400000, guid: 61cfde2b8a370d64389f9f6389918cfa, type: 2}
+    m_Data: {fileID: 11400000, guid: 6486c6c118d94c041af0f406b2c9bfc7, type: 2}
   - m_RefCount: 1
-    m_Data: {fileID: 11400000, guid: 483e317f90f398f44a02e1e84c24cbbe, type: 2}
+    m_Data: {fileID: 11400000, guid: 907752f8a5dfec54baa3ac625f577aa3, type: 2}
   - m_RefCount: 1
-    m_Data: {fileID: 11400000, guid: 176a549bf452e8a4180f5bd699243f01, type: 2}
+    m_Data: {fileID: 11400000, guid: 87207e59484778e4a838160b902f6923, type: 2}
   - m_RefCount: 1
-    m_Data: {fileID: 11400000, guid: 7bcf5c32beb8a4b48a1ed43ece8e0b7a, type: 2}
+    m_Data: {fileID: 11400000, guid: bead06492084ee34aac45e112407d1c2, type: 2}
   - m_RefCount: 1
-    m_Data: {fileID: 11400000, guid: 498c3c5b392d2a24299d47872938a458, type: 2}
+    m_Data: {fileID: 11400000, guid: b529e80ebdd24a04b992dc35c6af7381, type: 2}
   - m_RefCount: 1
-    m_Data: {fileID: 11400000, guid: 1ed355b7c9004c74fb5c8d2780b10187, type: 2}
+    m_Data: {fileID: 11400000, guid: ae47164266536bb468b0dfe266d32835, type: 2}
   - m_RefCount: 1
-    m_Data: {fileID: 11400000, guid: f9d63b3519118de428cf465413384d31, type: 2}
+    m_Data: {fileID: 11400000, guid: 83618a9f3e746004fa81149bd0d5c056, type: 2}
   m_TileSpriteArray:
   - m_RefCount: 1
     m_Data: {fileID: 21300000, guid: da7059fbbcacba742bbe57640a2bda64, type: 3}
@@ -416,6 +416,18 @@ Tilemap:
   m_TileColorArray:
   - m_RefCount: 25
     m_Data: {r: 1, g: 1, b: 1, a: 1}
+  - m_RefCount: 0
+    m_Data: {r: NaN, g: NaN, b: NaN, a: NaN}
+  - m_RefCount: 0
+    m_Data: {r: NaN, g: NaN, b: NaN, a: NaN}
+  - m_RefCount: 0
+    m_Data: {r: NaN, g: NaN, b: NaN, a: NaN}
+  - m_RefCount: 0
+    m_Data: {r: NaN, g: NaN, b: NaN, a: NaN}
+  - m_RefCount: 0
+    m_Data: {r: NaN, g: NaN, b: NaN, a: NaN}
+  - m_RefCount: 0
+    m_Data: {r: NaN, g: NaN, b: NaN, a: NaN}
   - m_RefCount: 0
     m_Data: {r: NaN, g: NaN, b: NaN, a: NaN}
   m_TileObjectToInstantiateArray: []
@@ -501,7 +513,7 @@ GameObject:
   - component: {fileID: 6045554047074134440}
   - component: {fileID: 1064617611213296071}
   m_Layer: 31
-  m_Name: New Palette
+  m_Name: Palette1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -530,11 +542,11 @@ Grid:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6308399977121435419}
   m_Enabled: 1
-  m_CellSize: {x: 1.0314411, y: 1.0314411, z: 0}
+  m_CellSize: {x: 1, y: 1, z: 0}
   m_CellGap: {x: 0, y: 0, z: 0}
   m_CellLayout: 0
   m_CellSwizzle: 0
---- !u!114 &2897530201364841630
+--- !u!114 &8060745982951263928
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
