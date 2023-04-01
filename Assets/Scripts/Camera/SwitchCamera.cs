@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
@@ -14,7 +14,7 @@ public class SwitchCamera : MonoBehaviour
 		defaultPriority = virtualCamera.Priority;
 	}
 
-	//ƒJƒƒ‰ƒXƒCƒbƒ`ƒRƒ‰ƒCƒ_[‚É“ü‚Á‚½vcamDown‚ÉØ‚è‘Ö‚¦
+	//ã‚«ãƒ¡ãƒ©ã‚¹ã‚¤ãƒƒãƒã‚³ãƒ©ã‚¤ãƒ€ãƒ¼ã«å…¥ã£ãŸæ™‚vcamDownã«åˆ‡ã‚Šæ›¿ãˆ
 	private void OnTriggerStay2D(Collider2D other)
 	{
 		if (other.gameObject.tag == "Player")
@@ -23,7 +23,7 @@ public class SwitchCamera : MonoBehaviour
 		}
 	}
 
-	//ƒJƒƒ‰ƒXƒCƒbƒ`ƒRƒ‰ƒCƒ_[‚©‚ço‚½vcamUp‚ÉØ‚è‘Ö‚¦
+	//ã‚«ãƒ¡ãƒ©ã‚¹ã‚¤ãƒƒãƒã‚³ãƒ©ã‚¤ãƒ€ãƒ¼ã‹ã‚‰å‡ºãŸæ™‚vcamUpã«åˆ‡ã‚Šæ›¿ãˆ
 	private void OnTriggerExit2D(Collider2D other)
 	{
 		if (other.gameObject.tag == "Player")
