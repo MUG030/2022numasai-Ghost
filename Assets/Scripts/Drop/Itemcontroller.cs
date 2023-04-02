@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -17,10 +17,10 @@ public class Itemcontroller : MonoBehaviour
     }
     void OnCollisionEnter2D(Collision2D col)
     {
-        // Õ“Ë‚µ‚½‘Šè‚ÉPlayerƒ^ƒO‚ª•t‚¢‚Ä‚¢‚é‚Æ‚«
+        // è¡çªã—ãŸç›¸æ‰‹ã«Playerã‚¿ã‚°ãŒä»˜ã„ã¦ã„ã‚‹ã¨ã
         if (col.gameObject.tag == "Player")
         {
-            // 0.2•bŒã‚ÉÁ‚¦‚é
+            // 0.2ç§’å¾Œã«æ¶ˆãˆã‚‹
             Destroy(gameObject, 0.0f);
         }
     }

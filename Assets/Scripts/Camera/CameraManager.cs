@@ -1,23 +1,23 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class CameraManager : MonoBehaviour
 {
-    [SerializeField] Transform playerTr; // ƒvƒŒƒCƒ„[‚ÌTransform
-    [SerializeField] Vector3 cameraOrgPos = new Vector3(0, 0, -10f); // ƒJƒƒ‰‚Ì‰ŠúˆÊ’uˆÊ’u
-    [SerializeField] Vector2 camaraMaxPos = new Vector2(100, 0); // ƒJƒƒ‰‚Ì(‰E,ã)ŒÀŠEÀ•W(‰æ–Ê’[‚Å‚Í’Ç]‚µ‚È‚¢)
-    [SerializeField] Vector2 camaraMinPos = new Vector2(0, 0); // ƒJƒƒ‰‚Ì(¶,‰º)ŒÀŠEÀ•W(c‚ÌƒJƒƒ‰‚ÍŒÅ’è)
+    [SerializeField] Transform playerTr; // ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®Transform
+    [SerializeField] Vector3 cameraOrgPos = new Vector3(0, 0, -10f); // ã‚«ãƒ¡ãƒ©ã®åˆæœŸä½ç½®ä½ç½®
+    [SerializeField] Vector2 camaraMaxPos = new Vector2(100, 0); // ã‚«ãƒ¡ãƒ©ã®(å³,ä¸Š)é™ç•Œåº§æ¨™(ç”»é¢ç«¯ã§ã¯è¿½å¾“ã—ãªã„)
+    [SerializeField] Vector2 camaraMinPos = new Vector2(0, 0); // ã‚«ãƒ¡ãƒ©ã®(å·¦,ä¸‹)é™ç•Œåº§æ¨™(ç¸¦ã®ã‚«ãƒ¡ãƒ©ã¯å›ºå®š)
     
     void FixedUpdate()
     {
-        Vector3 playerPos = playerTr.position; // ƒvƒŒƒCƒ„[‚ÌˆÊ’u
-        Vector3 camPos = transform.position; // ƒJƒƒ‰‚ÌˆÊ’u
+        Vector3 playerPos = playerTr.position; // ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®ä½ç½®
+        Vector3 camPos = transform.position; // ã‚«ãƒ¡ãƒ©ã®ä½ç½®
 
-        // ’x‰„‚ğ‚©‚¯‚È‚ª‚çƒvƒŒƒCƒ„[‚ÌˆÊ’u‚É’Ç]
+        // é…å»¶ã‚’ã‹ã‘ãªãŒã‚‰ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®ä½ç½®ã«è¿½å¾“
         camPos = Vector3.Lerp(transform.position, playerPos + cameraOrgPos, 3.0f * Time.deltaTime);
 
-        // ƒJƒƒ‰‚ÌˆÊ’u‚ğ§ŒÀ
+        // ã‚«ãƒ¡ãƒ©ã®ä½ç½®ã‚’åˆ¶é™
         camPos.x = Mathf.Clamp(camPos.x, camaraMinPos.x, camaraMaxPos.x);
         camPos.y = Mathf.Clamp(camPos.y, camaraMinPos.y, camaraMaxPos.y);
         camPos.z = -10f;

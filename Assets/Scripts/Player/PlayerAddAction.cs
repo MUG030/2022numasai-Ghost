@@ -1,10 +1,10 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerAddAction : MonoBehaviour
 {
-    bool goDash = false;            //ƒ_ƒbƒVƒ…ŠJnƒtƒ‰ƒO
+    bool goDash = false;            //ãƒ€ãƒƒã‚·ãƒ¥é–‹å§‹ãƒ•ãƒ©ã‚°
 
     // Start is called before the first frame update
     void Start()
@@ -15,10 +15,10 @@ public class PlayerAddAction : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // ƒLƒƒƒ‰‚ğƒ_ƒbƒVƒ…‚³‚¹‚é
+        // ã‚­ãƒ£ãƒ©ã‚’ãƒ€ãƒƒã‚·ãƒ¥ã•ã›ã‚‹
         if (Input.GetButtonDown("Fire3") && PlayerController.instance.axisH != 0.0f)
         {
-            Dash();     //ƒ_ƒbƒVƒ…
+            Dash();     //ãƒ€ãƒƒã‚·ãƒ¥
         }
     }
 
@@ -39,7 +39,7 @@ public class PlayerAddAction : MonoBehaviour
 
     }
     /// <summary>
-    /// ƒ_ƒbƒVƒ…
+    /// ãƒ€ãƒƒã‚·ãƒ¥
     /// </summary>
     public void Dash()
     {

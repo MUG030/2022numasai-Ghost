@@ -1,22 +1,22 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class HeartIndicator : MonoBehaviour
 {
-    //@ƒ‰ƒCƒtƒQ[ƒWƒvƒŒƒnƒu
+    //ã€€ãƒ©ã‚¤ãƒ•ã‚²ãƒ¼ã‚¸ãƒ—ãƒ¬ãƒãƒ–
     [SerializeField] private GameObject lifeObj;
     [SerializeField] private GameObject LostlifeObj;
 
-    //@ƒ‰ƒCƒtƒQ[ƒW‘Síœ•HP•ªì¬
+    //ã€€ãƒ©ã‚¤ãƒ•ã‚²ãƒ¼ã‚¸å…¨å‰Šé™¤ï¼†HPåˆ†ä½œæˆ
     public void SetLifeGauge(int life)
     {
-        //@‘Ì—Í‚ğˆê’U‘Síœ
+        //ã€€ä½“åŠ›ã‚’ä¸€æ—¦å…¨å‰Šé™¤
         for (int i = 0; i < transform.childCount; i++)
         {
             Destroy(transform.GetChild(i).gameObject);
         }
-        //@Œ»İ‚Ì‘Ì—Í”•ª‚Ìƒ‰ƒCƒtƒQ[ƒW‚ğì¬
+        //ã€€ç¾åœ¨ã®ä½“åŠ›æ•°åˆ†ã®ãƒ©ã‚¤ãƒ•ã‚²ãƒ¼ã‚¸ã‚’ä½œæˆ
         for (int i = 0; i < life; i++)
         {
             Instantiate<GameObject>(lifeObj, transform);
@@ -26,12 +26,12 @@ public class HeartIndicator : MonoBehaviour
             Instantiate<GameObject>(LostlifeObj, transform);
         }
     }
-    //@ƒ_ƒ[ƒW•ª‚¾‚¯íœ
+    //ã€€ãƒ€ãƒ¡ãƒ¼ã‚¸åˆ†ã ã‘å‰Šé™¤
     public void SetLifeGauge2(int damage)
     {
-        for (int i = 0; i < damage; i++)    //  ‰Šú’li=0‚Åƒ_ƒ[ƒWH‚ç‚Á‚½‚ç”äŠr‚Åfor“à‚ªŒÄ‚Ño‚³‚ê‚Äi+1‚³‚ê‚Äfor•¶‚ğ”²‚¯‚é
+        for (int i = 0; i < damage; i++)    //  åˆæœŸå€¤i=0ã§ãƒ€ãƒ¡ãƒ¼ã‚¸é£Ÿã‚‰ã£ãŸã‚‰æ¯”è¼ƒã§forå†…ãŒå‘¼ã³å‡ºã•ã‚Œã¦i+1ã•ã‚Œã¦foræ–‡ã‚’æŠœã‘ã‚‹
         {
-            //@ÅŒã‚Ìƒ‰ƒCƒtƒQ[ƒW‚ğíœ
+            //ã€€æœ€å¾Œã®ãƒ©ã‚¤ãƒ•ã‚²ãƒ¼ã‚¸ã‚’å‰Šé™¤
             Destroy(transform.GetChild(i).gameObject);
             //  Destroy(transform.GetChild(transform.childCount - 1 - i).gameObject);
         }
