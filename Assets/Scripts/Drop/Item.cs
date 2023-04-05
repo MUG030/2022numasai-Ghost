@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
@@ -9,18 +9,18 @@ public class Item : ScriptableObject
 {
     public enum Type
     {
-        HPportion//HP‰ñ•œƒAƒCƒeƒ€
+        HPportion//HPå›å¾©ã‚¢ã‚¤ãƒ†ãƒ 
     }
 
     [SerializeField]
     public Type itemType = Type.HPportion;
-    //ƒAƒCƒeƒ€‚Ì–¼‘O
+    //ã‚¢ã‚¤ãƒ†ãƒ ã®åå‰
     [SerializeField]
     private string ItemName = "";
-    //ƒAƒCƒeƒ€‚Ìî•ñ
+    //ã‚¢ã‚¤ãƒ†ãƒ ã®æƒ…å ±
     [SerializeField]
     private string information = "";
-    //ƒAƒCƒeƒ€‚ÌŒÂ”iƒRƒCƒ“‚È‚ç‰½–‡‚È‚Ì‚©“™j
+    //ã‚¢ã‚¤ãƒ†ãƒ ã®å€‹æ•°ï¼ˆã‚³ã‚¤ãƒ³ãªã‚‰ä½•æšãªã®ã‹ç­‰ï¼‰
     [SerializeField]
     private int amount = 0;
 

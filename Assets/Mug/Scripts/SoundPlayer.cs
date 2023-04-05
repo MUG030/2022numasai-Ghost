@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -23,13 +23,13 @@ public class SoundPlayer : MonoBehaviour
     void Update()
     {
 
-        //  ˆÚ“®‰¹
+        //  ç§»å‹•éŸ³
         if (Input.GetButtonDown("Horizontal"))
         {
             audioSource.PlayOneShot(SEMove);
         }
 
-        //  UŒ‚‰¹
+        //  æ”»æ’ƒéŸ³
         if (Input.GetKeyDown(KeyCode.Q))
         {
             audioSource.PlayOneShot(SEAttack);
@@ -39,11 +39,11 @@ public class SoundPlayer : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D col)
     {
-        //‘Ì—Í‰ñ•œˆ—
+        //ä½“åŠ›å›å¾©å‡¦ç†
         if (col.gameObject.tag == "Item" & recovery <= 4)
         {
             audioSource.PlayOneShot(SERecovery);
-            Debug.Log("‰ñ•œ");
+            Debug.Log("å›å¾©");
         }
     }
 }

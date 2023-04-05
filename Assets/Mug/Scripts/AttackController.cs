@@ -1,25 +1,25 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class AttackController : MonoBehaviour
 {
-    Rigidbody2D rd; //RigidbodyƒIƒuƒWƒFƒNƒg
-    float attspeed = 6.0f;  //ƒIƒuƒWƒFƒNƒgˆÚ“®ƒXƒs[ƒh
+    Rigidbody2D rd; //Rigidbodyã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+    float attspeed = 6.0f;  //ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆç§»å‹•ã‚¹ãƒ”ãƒ¼ãƒ‰
 
     void Start()
     {
-        rd = GetComponent<Rigidbody2D>();   //RigidbodyƒRƒ“ƒ|[ƒlƒ“ƒgæ“¾
+        rd = GetComponent<Rigidbody2D>();   //Rigidbodyã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆå–å¾—
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Q))     //UŒ‚ŠJn(QƒL[‚ğ‰Ÿ‚·‚ÆUŒ‚ŠJn)
-            rd.velocity = new Vector2(attspeed, 0); //ƒXƒs[ƒh‚ğ‚Â‚¯‚ÄUŒ‚ƒIƒuƒWƒFƒNƒg‚ğˆÚ“®
+        if (Input.GetKeyDown(KeyCode.Q))     //æ”»æ’ƒé–‹å§‹æ™‚(Qã‚­ãƒ¼ã‚’æŠ¼ã™ã¨æ”»æ’ƒé–‹å§‹)
+            rd.velocity = new Vector2(attspeed, 0); //ã‚¹ãƒ”ãƒ¼ãƒ‰ã‚’ã¤ã‘ã¦æ”»æ’ƒã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ç§»å‹•
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Destroy(gameObject);    //UŒ‚ƒIƒuƒWƒFƒNƒg‚Ì”jŠü
+        Destroy(gameObject);    //æ”»æ’ƒã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ç ´æ£„
     }
 }

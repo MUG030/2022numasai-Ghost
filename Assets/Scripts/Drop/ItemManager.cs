@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -22,7 +22,7 @@ public class ItemManager : MonoBehaviour
     }
     public void ItemDrop()
     {
-        if (item.GetItemName() == "‰ñ•œƒ|[ƒVƒ‡ƒ“")
+        if (item.GetItemName() == "å›å¾©ãƒãƒ¼ã‚·ãƒ§ãƒ³")
         {
             Instantiate(ItemObject, transform.position, Quaternion.identity);
         }
