@@ -14,7 +14,6 @@ public class PlayerController : MonoBehaviour
     public LayerMask groundLayer;   //着地できるレイヤー
     public LayerMask waterLayer;   //着地できるレイヤー
     bool goJump = false;            //ジャンプ開始フラグ
-    bool goDash = false;            //ダッシュ開始フラグ
     bool onGround = false;          //地面に立っているフラグ
     bool onWater = false;          //地面に立っているフラグ
     bool isAttacking = false;       // 攻撃モーションのフラグ
@@ -192,16 +191,6 @@ public class PlayerController : MonoBehaviour
             goJump = false; //ジャンプフラグを下ろす
         }
 
-        //  ダッシュ機能
-        if (goDash)
-        {
-            Debug.Log("ダッシュ");
-            //  ダッシュさせる
-            speed = 9.0f;
-            Vector2 force = new Vector2(axisH * speed, 0);
-            rbody.AddForce(force, ForceMode2D.Impulse);
-            goDash = false;
-        }
 
         //停止と移動と攻撃のアニメーション
         if (onGround)
@@ -251,13 +240,6 @@ public class PlayerController : MonoBehaviour
         audioSource.PlayOneShot(SEJump);    //  ジャンプ音
     }
 
-    /// <summary>
-    /// ダッシュ
-    /// </summary>
-    public void Dash()
-    {
-        goDash = true;
-    }
 
     //  攻撃アニメーション終了関数
     IEnumerable endMotionAnime()

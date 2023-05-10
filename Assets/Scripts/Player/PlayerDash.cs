@@ -2,15 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerAddAction : MonoBehaviour
+public class PlayerDash : MonoBehaviour
 {
     bool goDash = false;            //ダッシュ開始フラグ
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public float dashDistance = 3.0f; //ダッシュの移動距離
 
     // Update is called once per frame
     void Update()
@@ -18,7 +13,14 @@ public class PlayerAddAction : MonoBehaviour
         // キャラをダッシュさせる
         if (Input.GetButtonDown("Fire3") && PlayerController.instance.axisH != 0.0f)
         {
-            Dash();     //ダッシュ
+            // ダッシュ先にBlockTileオブジェクトがあるかチェックする
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.right * PlayerController.instance.axisH, dashDistance, LayerMask.GetMask("BlockTile"));
+
+            if (!hit)
+            {
+                // BlockTileオブジェクトがない場合、ダッシュを実行する
+                Dash();
+            }
         }
     }
 
@@ -28,12 +30,12 @@ public class PlayerAddAction : MonoBehaviour
 
         if (goDash && PlayerController.instance.axisH > 0.0f)
         {
-            mytransform.Translate(3.0f, 0.0f, 0.0f);
+            mytransform.Translate(dashDistance, 0.0f, 0.0f);
             goDash = false;
         }
         else if (goDash && PlayerController.instance.axisH < 0.0f)
         {
-            mytransform.Translate(-3.0f, 0.0f, 0.0f);
+            mytransform.Translate(-dashDistance, 0.0f, 0.0f);
             goDash = false;
         }
 
