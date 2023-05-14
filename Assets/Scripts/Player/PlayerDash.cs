@@ -1,50 +1,69 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
+using static UnityEngine.UI.Image;
 
 public class PlayerDash : MonoBehaviour
 {
-    bool goDash = false;            //ダッシュ開始フラグ
-    public float dashDistance = 3.0f; //ダッシュの移動距離
+    public float dashDistance = 3.0f;   // ダッシュ距離
+    public float dashDuration = 0.5f;   // ダッシュ時間
+    public float dashCooldown = 1.0f;   // ダッシュのクールダウン時間
+    private float lastDashTime;         // 前回ダッシュした時刻
+
+    bool hit = false;                   // 当たり判定フラグ
+    bool isDashing = false;             // ダッシュ中フラグ
 
     // Update is called once per frame
     void Update()
     {
-        // キャラをダッシュさせる
-        if (Input.GetButtonDown("Fire3") && PlayerController.instance.axisH != 0.0f)
+        if ( Time.time > lastDashTime + dashCooldown)
         {
-            // ダッシュ先にBlockTileオブジェクトがあるかチェックする
-            RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.right * PlayerController.instance.axisH, dashDistance, LayerMask.GetMask("BlockTile"));
-
-            if (!hit)
+            // ダッシュの開始
+            if (Input.GetKey(KeyCode.LeftShift) && Input.GetAxisRaw("Horizontal") != 0.0f && !isDashing)
             {
-                // BlockTileオブジェクトがない場合、ダッシュを実行する
-                Dash();
+                StartCoroutine(Dash());
             }
         }
     }
 
-    private void FixedUpdate()
+    private IEnumerator Dash()
     {
-        Transform mytransform = this.transform;
+        // ダッシュ開始前に当たり判定フラグをオフにする
+        hit = false;
+        isDashing = true;
 
-        if (goDash && PlayerController.instance.axisH > 0.0f)
+        // ダッシュ時間だけ進む
+        float elapsedTime = 0.0f;
+        while (elapsedTime < dashDuration)
         {
-            mytransform.Translate(dashDistance, 0.0f, 0.0f);
-            goDash = false;
-        }
-        else if (goDash && PlayerController.instance.axisH < 0.0f)
-        {
-            mytransform.Translate(-dashDistance, 0.0f, 0.0f);
-            goDash = false;
+            float distanceToMove = dashDistance * Time.deltaTime;
+            if(Input.GetAxisRaw("Horizontal") > 0.0f)
+            {
+                transform.Translate(transform.right * distanceToMove);
+            } else if (Input.GetAxisRaw("Horizontal") < 0.0f)
+            {
+                transform.Translate(-transform.right * distanceToMove);
+            }
+            elapsedTime += Time.deltaTime;
+
+            // ダッシュ中に"Enemy"タグをもつオブジェクトに触れたらダッシュをキャンセル
+            Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, 0.5f);
+            foreach (Collider2D collider in colliders)
+            {
+                if (collider.CompareTag("Enemy"))
+                {
+                    isDashing = false;
+                    yield break;
+                }
+            }
+
+            yield return null;
         }
 
-    }
-    /// <summary>
-    /// ダッシュ
-    /// </summary>
-    public void Dash()
-    {
-        goDash = true;
+        // ダッシュ後に当たり判定フラグをオンにする
+        hit = true;
+        isDashing = false;
+        lastDashTime = Time.time;
     }
 }
