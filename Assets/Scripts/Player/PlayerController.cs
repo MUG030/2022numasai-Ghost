@@ -20,7 +20,9 @@ public class PlayerController : MonoBehaviour
     bool onWater = false;          //地面に立っているフラグ
     bool isAttacking = false;       // 攻撃モーションのフラグ
 
-    public GameObject Backimg;
+    [SerializeField]
+    UnityEngine.UI.Image Backimg; // ワープ時のフェード用画像
+
     bool warpFlag = false; // ワープ後かワープ前か
 
     //アニメーション対応
@@ -60,6 +62,8 @@ public class PlayerController : MonoBehaviour
 
     public void Awake()
     {
+        
+
         if (instance == null)
         {
             instance = this;
@@ -80,6 +84,8 @@ public class PlayerController : MonoBehaviour
         //　体力ゲージに反映
         lifeGauge.SetLifeGauge(hp);
         audioSource = GetComponent<AudioSource>();
+
+        
     }
 
     // Update is called once per frame
@@ -351,24 +357,22 @@ public class PlayerController : MonoBehaviour
         {
             warpFlag = true; // ゴールできるフラグを立てる
 
-            Debug.Log("FadeOut");
-            var Backimg = GetComponent<Image>();
-            Backimg.DOFade(0, 2)
-                .SetEase(SineOut);
-
-            Invoke("WaitWarp", 1.0f); // ゴール前までワープ
+            Backimg.DOFade(1, 2); // フェードアウト
+            Invoke("FadeIn", 2.0f); // フェードイン
+            Invoke("Warp", 1.0f); // ゴール前までワープ
         }
     }
 
-    // ワープ後の処理
-    public void WaitWarp()
+    // フェードイン
+    public void FadeIn()
+    {   
+        Backimg.DOFade(0, 2);
+    }
+
+    // ワープ処理
+    public void Warp()
     {
         this.transform.position = new Vector3(325, 3, 0);
-
-        Debug.Log("Fadein");
-        var Backimg = GetComponent<Image>();
-        Backimg.DOFade(0, 2)
-            .SetEase(SineIn);
     }
 
     IEnumerable WaitForIt()

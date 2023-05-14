@@ -19,12 +19,4 @@ public class Fadein : MonoBehaviour
         img.DOFade(end_alpha, duration)
             .SetEase(Ease_Type);
     }
-
-    public void FadeIn()
-    {
-        Debug.Log("Fadein");
-        var img = GetComponent<Image>();
-        img.DOFade(end_alpha, duration)
-            .SetEase(Ease_Type);
-    }
 }
