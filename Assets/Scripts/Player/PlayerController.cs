@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using DG.Tweening;
 
 public class PlayerController : MonoBehaviour
 {
@@ -19,8 +21,7 @@ public class PlayerController : MonoBehaviour
     bool onWater = false;          //地面に立っているフラグ
     bool isAttacking = false;       // 攻撃モーションのフラグ
 
-    public Fadein fadeinScript; // フェードインに使用するスクリプト
-    public Fadeout fadeoutScript; // フェードアウトに使用するスクリプト
+    public GameObject Backimg;
     bool warpFlag = false; // ワープ後かワープ前か
 
     //アニメーション対応
@@ -367,7 +368,12 @@ public class PlayerController : MonoBehaviour
         if (col.gameObject.tag == "Warp")
         {
             warpFlag = true; // ゴールできるフラグを立てる
-            fadeoutScript.FadeOut();// フェードアウト
+
+            Debug.Log("FadeOut");
+            var Backimg = GetComponent<Image>();
+            Backimg.DOFade(0, 2)
+                .SetEase(SineOut);
+
             Invoke("WaitWarp", 1.0f); // ゴール前までワープ
         }
     }
@@ -376,7 +382,11 @@ public class PlayerController : MonoBehaviour
     public void WaitWarp()
     {
         this.transform.position = new Vector3(325, 3, 0);
-        fadeinScript.FadeIn(); // フェードイン
+
+        Debug.Log("Fadein");
+        var Backimg = GetComponent<Image>();
+        Backimg.DOFade(0, 2)
+            .SetEase(SineIn);
     }
 
     IEnumerable WaitForIt()
