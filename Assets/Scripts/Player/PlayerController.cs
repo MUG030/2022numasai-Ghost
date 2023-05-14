@@ -372,23 +372,24 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    IEnumerable WaitForIt()
-    {
-        yield return new WaitForSeconds(10);
-    }
-
+    // ワープ後の処理
     public void WaitWarp()
     {
         this.transform.position = new Vector3(325, 3, 0);
         fadeinScript.FadeIn(); // フェードイン
     }
 
-    //ダメージ終了
+    IEnumerable WaitForIt()
+    {
+        yield return new WaitForSeconds(10);
+    }
+
+    // ダメージ終了
     void DamageEnd()
     {
-        //ダメージフラグOFF
+        // ダメージフラグOFF
         inDamage = false;
-        //スプライトを元に戻す
+        // スプライトを元に戻す
         gameObject.GetComponent<SpriteRenderer>().enabled = true;
     }
 
@@ -398,7 +399,7 @@ public class PlayerController : MonoBehaviour
         hp = 5;
     }
 
-    //ゲームオーバー
+    // ゲームオーバー
     void GameOver()
     {
         Debug.Log("ゲームオーバー");
