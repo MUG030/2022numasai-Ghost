@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
 
-public class Fadein : MonoBehaviour
+public class Fadeout : MonoBehaviour
 {
     public GameObject img;
 
@@ -20,9 +20,9 @@ public class Fadein : MonoBehaviour
             .SetEase(Ease_Type);
     }
 
-    public void FadeIn()
+    public void FadeOut()
     {
-        Debug.Log("Fadein");
+        Debug.Log("Fadeout");
         var img = GetComponent<Image>();
         img.DOFade(end_alpha, duration)
             .SetEase(Ease_Type);

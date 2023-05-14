@@ -19,6 +19,10 @@ public class PlayerController : MonoBehaviour
     bool onWater = false;          //地面に立っているフラグ
     bool isAttacking = false;       // 攻撃モーションのフラグ
 
+    public Fadein fadeinScript; // フェードインに使用するスクリプト
+    public Fadeout fadeoutScript; // フェードアウトに使用するスクリプト
+    bool warpFlag = false; // ワープ後かワープ前か
+
     //アニメーション対応
     Animator animator;  //アニメーター
     public string stopAnime = "PlayerStop";
@@ -351,17 +355,32 @@ public class PlayerController : MonoBehaviour
         }
 
         // Clearのタグが付くオブジェクトに接触
-        if (col.gameObject.tag == "Clear")
+        if (col.gameObject.tag == "Clear" && warpFlag)
         {
             //Debug.Log("Touch Goal");
             hp = 5;
+            warpFlag = false;
             SceneManager.LoadScene("ClearScene");
+        }
+
+        // Warpのタグが付くオブジェクトに接触
+        if (col.gameObject.tag == "Warp")
+        {
+            warpFlag = true; // ゴールできるフラグを立てる
+            fadeoutScript.FadeOut();// フェードアウト
+            Invoke("WaitWarp", 1.0f); // ゴール前までワープ
         }
     }
 
     IEnumerable WaitForIt()
     {
         yield return new WaitForSeconds(10);
+    }
+
+    public void WaitWarp()
+    {
+        this.transform.position = new Vector3(325, 3, 0);
+        fadeinScript.FadeIn(); // フェードイン
     }
 
     //ダメージ終了
@@ -373,7 +392,7 @@ public class PlayerController : MonoBehaviour
         gameObject.GetComponent<SpriteRenderer>().enabled = true;
     }
 
-    public void WaitDead()
+    public void WaitDead() // 死亡処理
     {
         SceneManager.LoadScene("TitleScene");
         hp = 5;
