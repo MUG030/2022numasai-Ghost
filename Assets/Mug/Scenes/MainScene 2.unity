@@ -252,6 +252,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dashDistance: 3
+  dashDuration: 0.1
+  dashCooldown: 2
+  hit: 0
 --- !u!1 &43278295
 GameObject:
   m_ObjectHideFlags: 0
@@ -118607,6 +118610,10 @@ PrefabInstance:
       propertyPath: lifeGauge
       value: 
       objectReference: {fileID: 1527697122}
+    - target: {fileID: 6928710707541644769, guid: 9ad162c829b7b594d908a54a10b5aa0b, type: 3}
+      propertyPath: playerDash
+      value: 
+      objectReference: {fileID: 35767843}
     - target: {fileID: 6928710707541644769, guid: 9ad162c829b7b594d908a54a10b5aa0b, type: 3}
       propertyPath: fadeinScript
       value: 

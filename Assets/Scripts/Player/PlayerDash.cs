@@ -1,8 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Tilemaps;
-using static UnityEngine.UI.Image;
 
 public class PlayerDash : MonoBehaviour
 {
