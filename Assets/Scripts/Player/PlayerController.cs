@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using DG.Tweening;
 
 public class PlayerController : MonoBehaviour
 {
@@ -17,6 +19,11 @@ public class PlayerController : MonoBehaviour
     bool onGround = false;          //地面に立っているフラグ
     bool onWater = false;          //地面に立っているフラグ
     bool isAttacking = false;       // 攻撃モーションのフラグ
+
+    [SerializeField]
+    UnityEngine.UI.Image Backimg; // ワープ時のフェード用画像
+
+    bool warpFlag = false; // ワープ後かワープ前か
 
     //アニメーション対応
     Animator animator;  //アニメーター
@@ -55,6 +62,8 @@ public class PlayerController : MonoBehaviour
 
     public void Awake()
     {
+        
+
         if (instance == null)
         {
             instance = this;
@@ -75,6 +84,8 @@ public class PlayerController : MonoBehaviour
         //　体力ゲージに反映
         lifeGauge.SetLifeGauge(hp);
         audioSource = GetComponent<AudioSource>();
+
+        
     }
 
     // Update is called once per frame
@@ -333,12 +344,35 @@ public class PlayerController : MonoBehaviour
         }
 
         // Clearのタグが付くオブジェクトに接触
-        if (col.gameObject.tag == "Clear")
+        if (col.gameObject.tag == "Clear" && warpFlag)
         {
             //Debug.Log("Touch Goal");
             hp = 5;
+            warpFlag = false;
             SceneManager.LoadScene("ClearScene");
         }
+
+        // Warpのタグが付くオブジェクトに接触
+        if (col.gameObject.tag == "Warp")
+        {
+            warpFlag = true; // ゴールできるフラグを立てる
+
+            Backimg.DOFade(1, 2); // フェードアウト
+            Invoke("FadeIn", 2.0f); // フェードイン
+            Invoke("Warp", 1.0f); // ゴール前までワープ
+        }
+    }
+
+    // フェードイン
+    public void FadeIn()
+    {   
+        Backimg.DOFade(0, 2);
+    }
+
+    // ワープ処理
+    public void Warp()
+    {
+        this.transform.position = new Vector3(325, 3, 0);
     }
 
     IEnumerable WaitForIt()
@@ -346,22 +380,22 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(10);
     }
 
-    //ダメージ終了
+    // ダメージ終了
     void DamageEnd()
     {
-        //ダメージフラグOFF
+        // ダメージフラグOFF
         inDamage = false;
-        //スプライトを元に戻す
+        // スプライトを元に戻す
         gameObject.GetComponent<SpriteRenderer>().enabled = true;
     }
 
-    public void WaitDead()
+    public void WaitDead() // 死亡処理
     {
         SceneManager.LoadScene("TitleScene");
         hp = 5;
     }
 
-    //ゲームオーバー
+    // ゲームオーバー
     void GameOver()
     {
         Debug.Log("ゲームオーバー");

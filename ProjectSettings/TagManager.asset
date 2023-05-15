@@ -8,6 +8,8 @@ TagManager:
   - Enemy
   - Water
   - Item
+  - Weapon
+  - Warp
   layers:
   - Default
   - TransparentFX

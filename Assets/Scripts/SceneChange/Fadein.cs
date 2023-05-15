@@ -13,7 +13,7 @@ public class Fadein : MonoBehaviour
     public float start_alpha = 1f;
     public float end_alpha = 0f;
 
-    void Start()
+    public void Start()
     {
         var img = GetComponent<Image>();
         img.DOFade(end_alpha, duration)
