@@ -11,7 +11,7 @@ public class PlayerDash : MonoBehaviour
     public float dashCooldown = 1.0f;   // ダッシュのクールダウン時間
     private float lastDashTime;         // 前回ダッシュした時刻
 
-    bool hit = false;                   // 当たり判定フラグ
+    public bool hit = false;            // 当たり判定フラグ
     bool isDashing = false;             // ダッシュ中フラグ
 
     // Update is called once per frame
@@ -33,11 +33,14 @@ public class PlayerDash : MonoBehaviour
         hit = false;
         isDashing = true;
 
+        // ダッシュ速度の計算
+        float dashSpeed = dashDistance / dashDuration;
+
         // ダッシュ時間だけ進む
         float elapsedTime = 0.0f;
         while (elapsedTime < dashDuration)
         {
-            float distanceToMove = dashDistance * Time.deltaTime;
+            float distanceToMove = dashSpeed * Time.deltaTime;
             if(Input.GetAxisRaw("Horizontal") > 0.0f)
             {
                 transform.Translate(transform.right * distanceToMove);
@@ -46,17 +49,6 @@ public class PlayerDash : MonoBehaviour
                 transform.Translate(-transform.right * distanceToMove);
             }
             elapsedTime += Time.deltaTime;
-
-            // ダッシュ中に"Enemy"タグをもつオブジェクトに触れたらダッシュをキャンセル
-            Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, 0.5f);
-            foreach (Collider2D collider in colliders)
-            {
-                if (collider.CompareTag("Enemy"))
-                {
-                    isDashing = false;
-                    yield break;
-                }
-            }
 
             yield return null;
         }

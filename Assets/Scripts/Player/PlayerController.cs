@@ -54,6 +54,9 @@ public class PlayerController : MonoBehaviour
     //　LifeGaugeスクリプト
     [SerializeField]
     private HeartIndicator lifeGauge;
+    //  Dashスクリプト
+    [SerializeField]
+    private PlayerDash playerDash;
 
     //イベント用
     public bool controlEnabled {get; set; } = true; //操作有効無効Bool値
@@ -283,6 +286,11 @@ public class PlayerController : MonoBehaviour
 
             // 攻撃アニメ再生中は、以下の処理しない(無敵判定)
             if (animator.GetCurrentAnimatorStateInfo(0).IsName("PlayerAttack"))
+            {
+                return;
+            }
+
+            if (playerDash.hit == false)
             {
                 return;
             }
