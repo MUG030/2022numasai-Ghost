@@ -125,12 +125,6 @@ public class PlayerController : MonoBehaviour
                 Jump();     //ジャンプ
             }
 
-            /*// キャラをダッシュさせる
-            if(Input.GetKey(KeyCode.LeftShift))
-            {
-                Dash();     //ダッシュ
-            }*/
-
             Attack();
         }
     }
