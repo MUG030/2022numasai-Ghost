@@ -65,8 +65,6 @@ public class PlayerController : MonoBehaviour
 
     public void Awake()
     {
-        
-
         if (instance == null)
         {
             instance = this;
@@ -137,8 +135,8 @@ public class PlayerController : MonoBehaviour
         {
             return;
         }
-
-        //ゲーム中は何もしない
+        
+        //ゲーム中以外は何もしない
         if (gameState != "playing")
         {
             return;
@@ -271,8 +269,21 @@ public class PlayerController : MonoBehaviour
     //接触判定
     void OnTriggerEnter2D(Collider2D col) 
     {
+        if (col.gameObject.tag == "TextEvent")
+        {
+            rbody.velocity = Vector2.zero;
+            axisH = 0.0f;
+
+            nowAnime = stopAnime;
+            if (nowAnime != oldAnime)
+            {
+                oldAnime = nowAnime;
+                animator.Play(nowAnime);    // アニメーション再生
+            }
+        }
+
         //敵との衝突処理
-        
+
         if (col.gameObject.tag == "Enemy")
         {
             //Debug.Log("Hit Enemy");

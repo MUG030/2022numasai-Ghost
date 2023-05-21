@@ -13,7 +13,7 @@ public class SoundPlay : MonoBehaviour
     {
         if (Input.GetMouseButton(0))
         {
-            //audioSource.Play(clip1);
+            // audioSource.Play(clip1);
         }
 
         if (Input.GetMouseButton(1))

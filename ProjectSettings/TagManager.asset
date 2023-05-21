@@ -10,6 +10,8 @@ TagManager:
   - Item
   - Weapon
   - Warp
+  - TextEvent
+  - BGMChangeEvent
   layers:
   - Default
   - TransparentFX

@@ -13,7 +13,7 @@ public class SceneChanger : MonoBehaviour
 
     public void SCMain()
     {
-        SceneManager.LoadScene("MainScene");
+        SceneManager.LoadScene("MainScene 2");
     }
 
     public void SCClear()
