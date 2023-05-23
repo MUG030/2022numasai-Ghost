@@ -12,6 +12,7 @@ TagManager:
   - Warp
   - TextEvent
   - BGMChangeEvent
+  - Credit
   layers:
   - Default
   - TransparentFX
