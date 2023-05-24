@@ -139,7 +139,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &66588178
 Transform:
   m_ObjectHideFlags: 0
@@ -598,7 +598,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1.5
-  m_Text: "Toah-\u03C7\nMUG"
+  m_Text: "TOAH-\u03C7\nMUG"
 --- !u!222 &354249263
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -852,11 +852,11 @@ VideoPlayer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 437409049}
   m_Enabled: 1
-  m_VideoClip: {fileID: 32900000, guid: d38e1e1f606294312a10d35fbaed8b8f, type: 3}
+  m_VideoClip: {fileID: 32900000, guid: 9ab2fbe20051346898262c1a90f181df, type: 3}
   m_TargetCameraAlpha: 1
   m_TargetCamera3DLayout: 0
   m_TargetCamera: {fileID: 0}
-  m_TargetTexture: {fileID: 8400000, guid: 6bd97941fb03f4bd88ccf34a31b1e7a3, type: 2}
+  m_TargetTexture: {fileID: 8400000, guid: d6eccac775ec247d9bfc8cb0afeb9b9b, type: 2}
   m_TimeReference: 0
   m_TargetMaterialRenderer: {fileID: 0}
   m_TargetMaterialProperty: _MainTex
@@ -899,7 +899,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 8400000, guid: 6bd97941fb03f4bd88ccf34a31b1e7a3, type: 2}
+  m_Texture: {fileID: 8400000, guid: d6eccac775ec247d9bfc8cb0afeb9b9b, type: 2}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -3894,11 +3894,11 @@ VideoPlayer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1206712660}
   m_Enabled: 1
-  m_VideoClip: {fileID: 32900000, guid: d38e1e1f606294312a10d35fbaed8b8f, type: 3}
+  m_VideoClip: {fileID: 32900000, guid: 3ad93fc9a6aa9464b8b7edaaf4d15092, type: 3}
   m_TargetCameraAlpha: 1
   m_TargetCamera3DLayout: 0
   m_TargetCamera: {fileID: 0}
-  m_TargetTexture: {fileID: 8400000, guid: 6bd97941fb03f4bd88ccf34a31b1e7a3, type: 2}
+  m_TargetTexture: {fileID: 8400000, guid: 64340fc49dfdd4b50bc47061ab36653a, type: 2}
   m_TimeReference: 0
   m_TargetMaterialRenderer: {fileID: 0}
   m_TargetMaterialProperty: _MainTex
@@ -3913,7 +3913,7 @@ VideoPlayer:
   - 1
   m_Url: 
   m_EnabledAudioTracks: 01
-  m_DirectAudioMutes: 01
+  m_DirectAudioMutes: 00
   m_ControlledAudioTrackCount: 1
   m_PlayOnAwake: 1
   m_SkipOnDrop: 1
@@ -3941,7 +3941,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 8400000, guid: 6bd97941fb03f4bd88ccf34a31b1e7a3, type: 2}
+  m_Texture: {fileID: 8400000, guid: 64340fc49dfdd4b50bc47061ab36653a, type: 2}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -5356,7 +5356,7 @@ VideoPlayer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1787156083}
   m_Enabled: 1
-  m_VideoClip: {fileID: 32900000, guid: d38e1e1f606294312a10d35fbaed8b8f, type: 3}
+  m_VideoClip: {fileID: 32900000, guid: 82300491e113f43f79f3592fbf31a2ab, type: 3}
   m_TargetCameraAlpha: 1
   m_TargetCamera3DLayout: 0
   m_TargetCamera: {fileID: 0}
@@ -5757,7 +5757,7 @@ Tilemap:
       m_TileObjectToInstantiateIndex: 65535
       dummyAlignment: 0
       m_AllTileFlags: 1073741825
-  - first: {x: 22, y: -3, z: 0}
+  - first: {x: 23, y: -3, z: 0}
     second:
       serializedVersion: 2
       m_TileIndex: 0
@@ -6172,8 +6172,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -373, y: -52}
-  m_SizeDelta: {x: 685.06, y: 361.58}
+  m_AnchoredPosition: {x: -373, y: -77.84}
+  m_SizeDelta: {x: 685.06, y: 413.26}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2052361132
 MonoBehaviour:
@@ -6207,7 +6207,7 @@ MonoBehaviour:
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
-    m_LineSpacing: 1.5
+    m_LineSpacing: 1.2
   m_Text: "Akisame\n\u3072\u3068\u3057\nMUG\nInoue Daisuke"
 --- !u!222 &2052361133
 CanvasRenderer:
