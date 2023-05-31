@@ -13,6 +13,7 @@ TagManager:
   - TextEvent
   - BGMChangeEvent
   - Credit
+  - UIBreak
   layers:
   - Default
   - TransparentFX

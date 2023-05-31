@@ -1,34 +1,27 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using DG.Tweening;
 
-public class PlayerController : MonoBehaviour
+public class PlayerTutorial : MonoBehaviour
 {
     public static PlayerController instance;    //instance化
     Rigidbody2D rbody;              //Rigidbody2D型の変数
-    public float axisH = 0.0f;             //入力
+    public float axisH = 0.0f;      //入力
     public float speed = 3.0f;      //移動速度
+    public float warppointX = 1.0f; //x座標ワープポイント
+    public float warppointY = 1.0f; //y座標ワープポイント
 
     public float jump = 9.0f;       //ジャンプ力
     public LayerMask groundLayer;   //着地できるレイヤー
-    public LayerMask waterLayer;   //着地できるレイヤー
     bool goJump = false;            //ジャンプ開始フラグ
     bool onGround = false;          //地面に立っているフラグ
-    bool onWater = false;          //地面に立っているフラグ
     bool isAttacking = false;       // 攻撃モーションのフラグ
-    bool breakUI = false;           // UIを壊すためのフラグ
 
     [SerializeField]
     UnityEngine.UI.Image Backimg; // ワープ時のフェード用画像
-
-    bool warpFlag = false; // ワープ後かワープ前か
-
-    [SerializeField]
-    private GameObject gaidObject;  // 案内UIの表示非表示
-    int count = 0;
 
     //アニメーション対応
     Animator animator;  //アニメーター
@@ -64,17 +57,9 @@ public class PlayerController : MonoBehaviour
     private PlayerDash playerDash;
 
     //イベント用
-    public bool controlEnabled {get; set; } = true; //操作有効無効Bool値
+    public bool controlEnabled { get; set; } = true; //操作有効無効Bool値
 
     public float knockBackPower;
-
-    public void Awake()
-    {
-        if (instance == null)
-        {
-            instance = this;
-        }
-    }
 
     // Start is called before the first frame update
     void Start()
@@ -83,15 +68,14 @@ public class PlayerController : MonoBehaviour
         rbody = this.GetComponent<Rigidbody2D>();
         //Animatorを持ってくる
         animator = GetComponent<Animator>();
-        nowAnime = stopAnime;   
+        nowAnime = stopAnime;
         oldAnime = stopAnime;
         //ゲームの状態をプレイ中にする
         gameState = "playing";
         //　体力ゲージに反映
         lifeGauge.SetLifeGauge(hp);
         audioSource = GetComponent<AudioSource>();
-        gaidObject.SetActive(false);
-        
+
     }
 
     // Update is called once per frame
@@ -127,7 +111,6 @@ public class PlayerController : MonoBehaviour
             {
                 Jump();     //ジャンプ
             }
-
             Attack();
         }
     }
@@ -140,7 +123,7 @@ public class PlayerController : MonoBehaviour
         {
             return;
         }
-        
+
         //ゲーム中以外は何もしない
         if (gameState != "playing")
         {
@@ -168,23 +151,14 @@ public class PlayerController : MonoBehaviour
 
         //地上判定
         onGround = Physics2D.Linecast(transform.position, transform.position - (transform.up * 1.2f), groundLayer);
-        onWater = Physics2D.Linecast(transform.position, transform.position - (transform.up * 1.2f), waterLayer);
 
-        if (onGround || axisH != 0 && !onWater)
+        if (onGround || axisH != 0)
         {
             //地面の上or速度が0ではない、の二つを満たしていてかつ水面ではない
             //速度の更新
             speed = 3.0f;
             rbody.velocity = new Vector2(axisH * speed, rbody.velocity.y);
         }
-
-        else if (onWater || axisH != 0)
-        {
-            //水面での速度の更新
-            speed = 1.7f;
-            rbody.velocity = new Vector2(axisH * speed, rbody.velocity.y);
-        }
-
         if (onGround && goJump)
         {
             //地面の上でジャンプキーが押された
@@ -193,16 +167,6 @@ public class PlayerController : MonoBehaviour
             rbody.AddForce(jumpPw, ForceMode2D.Impulse);    //瞬間的な力を加える
             goJump = false; //ジャンプフラグを下ろす
         }
-        else if (onWater && goJump)
-        {
-            //  水面でジャンプキーが押された
-            //  ジャンプさせる
-            Vector2 jumpPw = new Vector2(0, jump);          //ジャンプさせるベクトルを作る
-            rbody.AddForce(jumpPw, ForceMode2D.Impulse);    //瞬間的な力を加える
-            goJump = false; //ジャンプフラグを下ろす
-        }
-
-
         //停止と移動と攻撃のアニメーション
         if (onGround)
         {
@@ -219,7 +183,7 @@ public class PlayerController : MonoBehaviour
         }
         else　                          //空中
         {
-            nowAnime = jumpAnime;        
+            nowAnime = jumpAnime;
         }
 
         if (nowAnime != oldAnime)
@@ -227,9 +191,6 @@ public class PlayerController : MonoBehaviour
             oldAnime = nowAnime;
             animator.Play(nowAnime);    // アニメーション再生
         }
-
-        
-
     }
 
     public void Attack()
@@ -272,26 +233,12 @@ public class PlayerController : MonoBehaviour
     }
 
     //接触判定
-    void OnTriggerEnter2D(Collider2D col) 
+    void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.gameObject.tag == "UIBreak")
-        {
-            if(breakUI == true)
-            {
-                Debug.Log("test");
-                gaidObject.gameObject.SetActive(false);
-            }
-        }
         if (col.gameObject.tag == "TextEvent")
         {
             rbody.velocity = Vector2.zero;
             axisH = 0.0f;
-            count++;
-            if (count == 2)
-            {
-                gaidObject.gameObject.SetActive(true);
-                breakUI = true;
-            }
             nowAnime = stopAnime;
             if (nowAnime != oldAnime)
             {
@@ -372,17 +319,15 @@ public class PlayerController : MonoBehaviour
         }
 
         // Clearのタグが付くオブジェクトに接触
-        if (col.gameObject.tag == "Clear" && warpFlag)
+        if (col.gameObject.tag == "Clear")
         {
             hp = 5;
-            warpFlag = false;
-            SceneManager.LoadScene("ClearScene");
+            SceneManager.LoadScene("TitleScene");
         }
 
         // Warpのタグが付くオブジェクトに接触
         if (col.gameObject.tag == "Warp")
         {
-            warpFlag = true; // ゴールできるフラグを立てる
 
             Backimg.DOFade(1, 2); // フェードアウト
             Invoke("FadeIn", 2.0f); // フェードイン
@@ -392,14 +337,14 @@ public class PlayerController : MonoBehaviour
 
     // フェードイン
     public void FadeIn()
-    {   
+    {
         Backimg.DOFade(0, 2);
     }
 
     // ワープ処理
     public void Warp()
     {
-        this.transform.position = new Vector3(325, 3, 0);
+        this.transform.position = new Vector3(warppointX, warppointY, 0);
     }
 
     IEnumerable WaitForIt()
@@ -425,9 +370,8 @@ public class PlayerController : MonoBehaviour
     // ゲームオーバー
     void GameOver()
     {
-        Debug.Log("ゲームオーバー");
         gameState = "gameover";
         animator.Play(deadAnime);
-        Invoke("WaitDead", 1.0f);
+        this.transform.position = new Vector3(-18, -2, 0);
     }
 }
