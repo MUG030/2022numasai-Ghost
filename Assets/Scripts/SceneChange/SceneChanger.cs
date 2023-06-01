@@ -11,6 +11,11 @@ public class SceneChanger : MonoBehaviour
         SceneManager.LoadScene("TitleScene");
     }
 
+    public void SCTutorial()
+    {
+        SceneManager.LoadScene("TutorialScene");
+    }
+
     public void SCMain()
     {
         SceneManager.LoadScene("MainScene 2");
@@ -23,6 +28,6 @@ public class SceneChanger : MonoBehaviour
 
     public void SCCredit()
     {
-        SceneManager.LoadScene("Credit");
+        SceneManager.LoadScene("CreditRoll");
     }
 }
