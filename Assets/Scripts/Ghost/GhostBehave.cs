@@ -74,7 +74,7 @@ public class GhostBehave : MonoBehaviour
             //Debug.Log("dead");
             Destroy(gameObject, 0.2f);
             random = Random.Range(0f, 100f);
-            if (random <= 50)
+            if (random <= 30)
             {
                 Instantiate(itemPrefab, transform.position, Quaternion.identity);
             }
