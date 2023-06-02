@@ -9,18 +9,12 @@ public class move : MonoBehaviour
     public float speed = 0.01f;
     public float houkou = 1.0f;
     public EnemyCollisionCheck checkCollision;
-    //private float p1=0.0f;
-    //public trigger checkCollision;
-    //private string enemyTag = "Enemy";
-    // Start is called before the first frame update
+    /*private float p1=0.0f;
+    public trigger checkCollision;
+    private string enemyTag = "Enemy";
+    Start is called before the first frame update*/
     void Start()
     {
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-
-
     }
 
     void Update()
@@ -37,7 +31,6 @@ public class move : MonoBehaviour
     {
         if (collision.gameObject.tag == "Weapon" || collision.gameObject.tag == "Player")
         {
-            //Debug.Log("dead");
             Destroy(gameObject, 0.0f);
         }
     }

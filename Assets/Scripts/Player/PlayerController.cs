@@ -264,7 +264,6 @@ public class PlayerController : MonoBehaviour
         //体力回復処理
         if (col.gameObject.tag == "Item" & hp <= 4)
         {
-            //Debug.Log("回復アイテムに触れた");
             hp++;
             lifeGauge.SetLifeGauge(hp);
             audioSource.PlayOneShot(SERecovery);
@@ -307,6 +306,7 @@ public class PlayerController : MonoBehaviour
             //Debug.Log("Hit Enemy");
             //ダメージアニメーション
 
+            Debug.Log("1ダメージ");
             // 攻撃アニメ再生中は、以下の処理しない(無敵判定)
             if (animator.GetCurrentAnimatorStateInfo(0).IsName("PlayerAttack"))
             {
