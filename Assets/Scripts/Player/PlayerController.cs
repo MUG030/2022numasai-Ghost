@@ -379,6 +379,11 @@ public class PlayerController : MonoBehaviour
             SceneManager.LoadScene("ClearScene");
         }
 
+        if (col.gameObject.tag == "RespornWall")
+        {
+            this.transform.position = new Vector3(-18, -4, 0);
+        }
+
         // Warpのタグが付くオブジェクトに接触
         if (col.gameObject.tag == "Warp")
         {

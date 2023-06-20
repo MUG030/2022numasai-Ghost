@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -323,6 +323,11 @@ public class PlayerTutorial : MonoBehaviour
         {
             hp = 5;
             SceneManager.LoadScene("TitleScene");
+        }
+
+        if(col.gameObject.tag == "RespornWall")
+        {
+            this.transform.position = new Vector3(-18, -2, 0);
         }
 
         // Warpのタグが付くオブジェクトに接触
